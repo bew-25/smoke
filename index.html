@@ -61,7 +61,7 @@ h1,h2,h3{font-family:var(--display);margin:0;text-wrap:balance}
 .feeds{display:flex;flex-wrap:wrap;gap:8px}
 .feed{display:flex;align-items:center;gap:8px;border:1px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 12px;font-size:12.5px}
 .feed .fd{width:8px;height:8px;border-radius:50%;background:var(--muted)}
-.feed .fd.ok{background:var(--pos)} .feed .fd.late{background:var(--warn)} .feed .fd.bad{background:var(--neg)}
+.feed .fd.ok{background:var(--pos)} .feed .fd.idle{background:transparent;box-shadow:inset 0 0 0 2px var(--muted)} .feed .fd.late{background:var(--warn)} .feed .fd.bad{background:var(--neg)}
 .feed .ag{font:500 12px var(--mono);color:var(--muted)}
 .feed.bad{border-color:color-mix(in srgb,var(--neg) 45%,var(--line))}
 
@@ -294,7 +294,13 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.45 var(--mono);backgr
   }
 
   // ---------- feeds ----------
-  function feedState(f){ var age=Date.now()/1000-(f.last||0);
+  function feedIdle(f){
+    var m=/^Forecast ensemble · (\w+)/.exec(f.name||''); if(!m||!snap||!snap.live) return false;
+    var L=snap.live, st=(L.stations||[]).filter(function(x){return x.signal==='obs_'+m[1];})[0];
+    if(!st) return false;
+    return !(L.groups||[]).some(function(g){ return (st.series||[]).indexOf(g.series)>=0 && g.date && st.day && g.date>st.day; });
+  }
+  function feedState(f){ if(feedIdle(f)) return 'idle'; var age=Date.now()/1000-(f.last||0);
     if(f.error) return 'bad'; if(!f.last) return 'late';
     var lim=/Kalshi live/.test(f.name)?600:/REST/.test(f.name)?1200:/ensemble/i.test(f.name)?1800:300;
     return age<=lim?'ok':age<=lim*3?'late':'bad'; }
@@ -303,7 +309,7 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.45 var(--mono);backgr
   var FGROUPS=[['kalshi','Kalshi',/^Kalshi/],['metar','METAR',/^Aviation Weather/],['obs','5-min obs',/^Synoptic/],['fc','Forecasts',/^Forecast/]];
   var feedList=[];
   function groupOf(f){ for(var i=0;i<FGROUPS.length;i++){ if(FGROUPS[i][2].test(f.name)) return FGROUPS[i][0]; } return 'other'; }
-  var RANKS={ok:0,late:1,bad:2};
+  var RANKS={idle:0,ok:0,late:1,bad:2};
   function renderFeeds(L){
     feedList=(L&&L.feeds)||[];
     if(!feedList.length){ $('fgroups').innerHTML=''; $('fdetail').hidden=true; return; }
@@ -314,16 +320,19 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.45 var(--mono);backgr
     var det=$('fdetail');
     if(feedOpen){ det.hidden=false;
       det.innerHTML=feedList.filter(function(f){return groupOf(f)===feedOpen;}).map(function(f){
-        return '<span class="feed" data-f="'+esc(JSON.stringify({name:f.name,last:f.last,error:f.error}))+'" title="'+esc(f.name+(f.error?' · '+f.error:''))+'"><span class="fd '+feedState(f)+'"></span>'+esc(shortFeed(f.name).replace(/^(METAR|5-min obs|Forecast) · /,''))+'<span class="ag" data-ep="'+(f.last||0)+'"></span></span>'; }).join('');
+        return '<span class="feed" data-f="'+esc(JSON.stringify({name:f.name,last:f.last,error:f.error}))+'" title="'+esc(f.name+(f.error?' · '+f.error:'')+(feedIdle(f)?' · idle: nothing settles after today yet':''))+'"><span class="fd '+feedState(f)+'"></span>'+esc(shortFeed(f.name).replace(/^(METAR|5-min obs|Forecast) · /,''))+'<span class="ag" data-ep="'+(f.last||0)+'"></span></span>'; }).join('');
     } else { det.hidden=true; det.innerHTML=''; }
   }
   function tickFeedGroups(){
     var now=Date.now()/1000;
     document.querySelectorAll('.fgroup').forEach(function(b){
       var fs=feedList.filter(function(f){return groupOf(f)===b.dataset.grp;}), worst='ok', okc=0, oldest=null;
-      fs.forEach(function(f){ var st=feedState(f); if(RANKS[st]>RANKS[worst]) worst=st; if(st==='ok') okc++; if(f.last&&(oldest==null||f.last<oldest)) oldest=f.last; });
+      var idle=0;
+      fs.forEach(function(f){ var st=feedState(f); if(st==='idle'){ idle++; return; } if(RANKS[st]>RANKS[worst]) worst=st; if(st==='ok') okc++; if(f.last&&(oldest==null||f.last<oldest)) oldest=f.last; });
+      if(idle===fs.length){ b.querySelector('.fd').className='fd idle'; b.classList.remove('bad'); b.querySelector('.cnt').textContent='idle';
+        b.querySelector('.ag').textContent='no tomorrow markets listed yet'; return; }
       b.querySelector('.fd').className='fd '+worst; b.classList.toggle('bad',worst==='bad');
-      b.querySelector('.cnt').textContent=okc+'/'+fs.length;
+      b.querySelector('.cnt').textContent=okc+'/'+(fs.length-idle)+(idle?' · '+idle+' idle':'');
       b.querySelector('.ag').textContent= oldest? 'oldest '+ago(now-oldest) : 'no data';
     });
   }
