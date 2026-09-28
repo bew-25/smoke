@@ -226,7 +226,7 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.45 var(--mono);backgr
     <div class="sec-head"><div><h2>Markets, live</h2><div class="eyebrow" style="margin-top:6px">One box per city per day · all its brackets settle on one number</div></div>
       <div class="tool"><button class="btn" id="b-today" aria-pressed="false">Settling today only</button><button class="btn" id="b-open">Expand all</button><button class="btn" id="b-close">Collapse all</button></div></div>
     <div class="pools" id="pools"></div>
-    <p class="foot" style="margin:12px 0 0"><b>YES / NO if right</b>: profit per dollar if you buy that side at today's price and it wins, after Kalshi's fee (a 20¢ YES pays about +390%). <b>Expected</b>: average return per dollar using our probability instead, on the better side; only this one tells you if a trade is worth taking. Grey numbers are forecast reads the bot is ignoring until a new model run.</p>
+    <p class="foot" style="margin:12px 0 0"><b>YES / NO if right</b>: profit per dollar if you buy that side at today's price and it wins, after Kalshi's fee (a 20¢ YES pays about +390%). <b>Expected</b>: average return per dollar using our probability instead, on the better side; only this one tells you if a trade is worth taking. Grey numbers are forecast reads, shown for context only; the bot doesn't trade on forecasts.</p>
   </section>
 
   <section class="grid2">
@@ -401,7 +401,7 @@ pre{white-space:pre-wrap;word-break:break-word;font:12px/1.45 var(--mono);backgr
         var r=m.read, readTxt='<span class="muted">no opinion</span>', pY='–', edge=null, opp=false;
         if(r){ pY=Math.round(r.p*100)+'%';
           if(r.locked){ readTxt='<span class="read lock">LOCKED '+esc(String(r.side||'').toUpperCase())+'</span>'; }
-          else { readTxt='<span class="read">'+(r.tradeable?'forecast · tradeable':'forecast · waiting for new run')+'</span>'; }
+          else { readTxt='<span class="read">'+(r.tradeable?'forecast · tradeable':(/trading OFF/.test(r.why||'')?'forecast · context only':'forecast · waiting for new run'))+'</span>'; }
           var ey= m.ask!=null ? r.p-m.ask/100 : null, en= m.bid!=null ? m.bid/100-r.p : null;
           if(r.locked){ edge = r.side==='yes'? ey : en; } else { edge = ey==null? en : en==null? ey : Math.max(ey,en); }
           opp = r.locked && edge!=null && edge>0.05; }
