@@ -1,0 +1,5319 @@
+{
+ "built": "2026-10-03T15:34:17",
+ "built_epoch": 1791066857,
+ "mode": "paper",
+ "environment": "prod",
+ "live_money": false,
+ "bankroll": 1800.0,
+ "status": {
+  "last_run_epoch": 1791066857,
+  "stream": true,
+  "paused": "",
+  "schedule_loaded": true
+ },
+ "kpis": {
+  "equity": 1690.75,
+  "realized": -109.25,
+  "unrealized": 0,
+  "settled": 5,
+  "wins": 0,
+  "open": 0,
+  "at_risk": 0,
+  "return_on_staked": -1.0,
+  "avg_claimed_edge": 0.272
+ },
+ "equity_curve": [
+  [
+   "KXBTCD-26SEP2717-T82999.99",
+   -30.99
+  ],
+  [
+   "KXHIGHNY-26SEP27-T65",
+   -87.11
+  ],
+  [
+   "KXHIGHCHI-26SEP27-T67",
+   -87.22
+  ],
+  [
+   "KXHIGHTPHX-26SEP28-B87.5",
+   -94.4
+  ],
+  [
+   "KXHIGHTPHX-26SEP28-B85.5",
+   -109.25
+  ]
+ ],
+ "checks": [
+  {
+   "status": "ok",
+   "name": "Money at risk",
+   "detail": "None: paper mode, no orders are sent"
+  },
+  {
+   "status": "ok",
+   "name": "Price source",
+   "detail": "Real Kalshi prices (prod)"
+  },
+  {
+   "status": "ok",
+   "name": "Background job",
+   "detail": "Loaded"
+  },
+  {
+   "status": "ok",
+   "name": "Dropbox copy",
+   "detail": "Synced at 15:33"
+  },
+  {
+   "status": "ok",
+   "name": "Google Drive relay",
+   "detail": "Web page data updated at 15:33"
+  },
+  {
+   "status": "ok",
+   "name": "Public page (GitHub)",
+   "detail": "Updated at 15:33 \u00b7 https://bew-25.github.io/smoke/"
+  },
+  {
+   "status": "ok",
+   "name": "Kill switch",
+   "detail": "Off"
+  },
+  {
+   "status": "ok",
+   "name": "Last run",
+   "detail": "Oct 03 03:34 PM (0 min ago)"
+  },
+  {
+   "status": "ok",
+   "name": "Mode",
+   "detail": "Live price stream"
+  },
+  {
+   "status": "ok",
+   "name": "Heartbeats / scans today",
+   "detail": "930"
+  },
+  {
+   "status": "ok",
+   "name": "Errors (24h)",
+   "detail": "0"
+  },
+  {
+   "status": "warn",
+   "name": "Data feed problems (24h)",
+   "detail": "952 (NOAA / price feeds)"
+  },
+  {
+   "status": "ok",
+   "name": "Kalshi lookups for this page",
+   "detail": "All OK"
+  },
+  {
+   "status": "ok",
+   "name": "Crashes (24h)",
+   "detail": "None"
+  }
+ ],
+ "trades": [
+  {
+   "ts": "2026-09-27T23:03:27.642315",
+   "ticker": "KXHIGHTPHX-26SEP28-B85.5",
+   "title": "Will the maximum temperature be 85-86\u00b0 on Sep 28, 2026?",
+   "side": "yes",
+   "qty": 100,
+   "px": 14,
+   "cost": 14.85,
+   "fair": 0.2381,
+   "mid": 0.135,
+   "edge": 0.0797,
+   "status": "lost",
+   "sold_qty": 0,
+   "pnl": -14.85,
+   "no_bid": false,
+   "close_time": "2026-09-29T07:00:00Z",
+   "signal": "weather_phoenix",
+   "why": "2026-09-28 ensemble 82 runs: median 85.3F (P10-P90 79-88F), market 85 to 86F, lead 1d -> fair_prob=0.238 [new model run 13 min ago moved fair +0.057]",
+   "confidence": "0.558",
+   "exits": [],
+   "result": "no"
+  },
+  {
+   "ts": "2026-09-27T23:00:24.118971",
+   "ticker": "KXHIGHTPHX-26SEP28-B87.5",
+   "title": "Will the maximum temperature be 87-88\u00b0 on Sep 28, 2026?",
+   "side": "yes",
+   "qty": 75,
+   "px": 9,
+   "cost": 7.18,
+   "fair": 0.2463,
+   "mid": 0.085,
+   "edge": 0.1405,
+   "status": "lost",
+   "sold_qty": 0,
+   "pnl": -7.18,
+   "no_bid": false,
+   "close_time": "2026-09-29T07:00:00Z",
+   "signal": "weather_phoenix",
+   "why": "2026-09-28 ensemble 82 runs: median 85.3F (P10-P90 79-88F), market 87 to 88F, lead 1d -> fair_prob=0.246 [new model run 10 min ago moved fair +0.070]",
+   "confidence": "0.558",
+   "exits": [],
+   "result": "no"
+  },
+  {
+   "ts": "2026-09-26T14:41:56.698771",
+   "ticker": "KXBTCD-26SEP2717-T82999.99",
+   "title": "Bitcoin price on Sep 27, 2026?",
+   "side": "no",
+   "qty": 581,
+   "px": 5,
+   "cost": 30.99,
+   "fair": 0.732,
+   "mid": 0.955,
+   "edge": 0.2047,
+   "status": "lost",
+   "sold_qty": 0,
+   "pnl": -30.99,
+   "no_bid": false,
+   "close_time": "2026-09-27T21:00:00Z",
+   "signal": "crypto_btc",
+   "why": "spot=$84,144.62 market > 83000 vol=42.9% T=23.3h, zero-drift lognormal -> fair_prob=0.732",
+   "confidence": "0.3",
+   "exits": [],
+   "result": "yes"
+  },
+  {
+   "ts": "2026-09-26T14:41:56.697939",
+   "ticker": "KXHIGHNY-26SEP27-T65",
+   "title": "Will the maximum temperature be <65\u00b0 on Sep 27, 2026?",
+   "side": "no",
+   "qty": 138,
+   "px": 39,
+   "cost": 56.12,
+   "fair": 0.3085,
+   "mid": 0.615,
+   "edge": 0.2748,
+   "status": "lost",
+   "sold_qty": 0,
+   "pnl": -56.12,
+   "no_bid": false,
+   "close_time": "2026-09-28T05:00:00Z",
+   "signal": "weather_nyc",
+   "why": "2026-09-27 NOAA high 66F, market < 65F, lead 1d, sigma 3.0F -> fair_prob=0.309",
+   "confidence": "0.55",
+   "exits": [],
+   "result": "yes"
+  },
+  {
+   "ts": "2026-09-26T14:41:56.696745",
+   "ticker": "KXHIGHCHI-26SEP27-T67",
+   "title": "Will the maximum temperature be <67\u00b0 on Sep 27, 2026?",
+   "side": "yes",
+   "qty": 5,
+   "px": 2,
+   "cost": 0.11,
+   "fair": 0.6915,
+   "mid": 0.015,
+   "edge": 0.6601,
+   "status": "lost",
+   "sold_qty": 0,
+   "pnl": -0.11,
+   "no_bid": false,
+   "close_time": "2026-09-28T06:00:00Z",
+   "signal": "weather_chicago",
+   "why": "2026-09-27 NOAA high 65F, market < 67F, lead 1d, sigma 3.0F -> fair_prob=0.691",
+   "confidence": "0.5",
+   "exits": [],
+   "result": "no"
+  }
+ ],
+ "by_signal": [
+  {
+   "signal": "crypto_btc",
+   "n": 1,
+   "settled": 1,
+   "wins": 0,
+   "staked": 30.990000000000002,
+   "pnl": -30.990000000000002,
+   "open": 0
+  },
+  {
+   "signal": "weather_chicago",
+   "n": 1,
+   "settled": 1,
+   "wins": 0,
+   "staked": 0.11,
+   "pnl": -0.11,
+   "open": 0
+  },
+  {
+   "signal": "weather_nyc",
+   "n": 1,
+   "settled": 1,
+   "wins": 0,
+   "staked": 56.12,
+   "pnl": -56.12,
+   "open": 0
+  },
+  {
+   "signal": "weather_phoenix",
+   "n": 2,
+   "settled": 2,
+   "wins": 0,
+   "staked": 22.03,
+   "pnl": -22.03,
+   "open": 0
+  }
+ ],
+ "issues": [
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T11:04:21",
+   "source": "stream",
+   "msg": "stream interrupted (HTTPSConnectionPool(host='api.elections.kalshi.com', port=443): Read timed out. (read timeout=10.0)); reconnecting in 5s"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T06:50:57",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 132 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T06:35:56",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 130 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T06:20:54",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 136 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 2,
+   "last": "2026-10-03T06:05:53",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 138 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 3,
+   "last": "2026-10-03T05:35:52",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 140 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 2,
+   "last": "2026-10-03T04:50:44",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 142 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 3,
+   "last": "2026-10-03T04:20:37",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 148 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 2,
+   "last": "2026-10-03T03:35:28",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 150 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T03:05:18",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 152 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 5,
+   "last": "2026-10-03T02:50:15",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 154 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T01:50:03",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 156 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-03T01:19:58",
+   "source": "tripwires",
+   "msg": "tripwire unpriced: 158 markets returned but none had a usable price (Kalshi API format change?) (1/3 in a row)"
+  },
+  {
+   "level": "WARNING",
+   "count": 1,
+   "last": "2026-10-02T17:00:16",
+   "source": "stream",
+   "msg": "stream interrupted (Connection to remote host was lost.); reconnecting in 5s"
+  },
+  {
+   "level": "WARNING",
+   "count": 43,
+   "last": "2026-10-02T17:00:03",
+   "source": "scanner",
+   "msg": "signal weather_sanfrancisco data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 170,
+   "last": "2026-10-02T17:00:02",
+   "source": "scanner",
+   "msg": "signal weather_austin data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 42,
+   "last": "2026-10-02T16:57:33",
+   "source": "scanner",
+   "msg": "signal weather_losangeles data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 43,
+   "last": "2026-10-02T16:57:27",
+   "source": "scanner",
+   "msg": "signal weather_dallas data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 42,
+   "last": "2026-10-02T16:57:22",
+   "source": "scanner",
+   "msg": "signal weather_seattle data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 146,
+   "last": "2026-10-02T16:57:11",
+   "source": "scanner",
+   "msg": "signal weather_denver data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 49,
+   "last": "2026-10-02T16:55:54",
+   "source": "scanner",
+   "msg": "signal weather_phoenix data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 191,
+   "last": "2026-10-02T16:55:49",
+   "source": "scanner",
+   "msg": "signal weather_houston data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 63,
+   "last": "2026-10-02T16:55:43",
+   "source": "scanner",
+   "msg": "signal weather_minneapolis data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 36,
+   "last": "2026-10-02T16:55:16",
+   "source": "scanner",
+   "msg": "signal weather_lasvegas data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  },
+  {
+   "level": "WARNING",
+   "count": 41,
+   "last": "2026-10-02T16:55:00",
+   "source": "scanner",
+   "msg": "signal weather_oklahomacity data unavailable for <market>: ensemble unavailable for 2026-10-03 (0 members)"
+  }
+ ],
+ "crashes": [],
+ "skip_reasons": [],
+ "live": {
+  "written": 1791066857.291855,
+  "feeds": [
+   {
+    "name": "Kalshi live prices (WebSocket)",
+    "last": 1791066857.209374
+   },
+   {
+    "name": "Kalshi market list (REST, every 15 min)",
+    "last": 1791066001.708809
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KMSP",
+    "last": 1791066857.213608,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KMSP",
+    "last": 1791066857.221717,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KHOU",
+    "last": 1791066818.7139132,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KHOU",
+    "last": 1791066818.719143,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KDEN",
+    "last": 1791066834.172168,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KDEN",
+    "last": 1791066834.47507,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KAUS",
+    "last": 1791066847.179303,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KAUS",
+    "last": 1791066847.1865542,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KLAS",
+    "last": 1791066847.188181,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KLAS",
+    "last": 1791066847.1948311,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KSEA",
+    "last": 1791066848.200901,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KSEA",
+    "last": 1791066848.20878,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KSFO",
+    "last": 1791066844.208305,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KSFO",
+    "last": 1791066844.217601,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KOKC",
+    "last": 1791066848.211025,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KOKC",
+    "last": 1791066848.217709,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KDFW",
+    "last": 1791066848.2194428,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KDFW",
+    "last": 1791066848.224256,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KPHX",
+    "last": 1791066848.225317,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KPHX",
+    "last": 1791066848.228677,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KLAX",
+    "last": 1791066848.2295942,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KLAX",
+    "last": 1791066848.23297,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KMDW",
+    "last": 1791066848.2336938,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KMDW",
+    "last": 1791066848.236577,
+    "error": null
+   },
+   {
+    "name": "Aviation Weather METAR \u00b7 KNYC",
+    "last": 1791066848.2372851,
+    "error": null
+   },
+   {
+    "name": "Synoptic 5-min \u00b7 KNYC",
+    "last": 1791066848.237495,
+    "error": null
+   },
+   {
+    "name": "Forecast ensemble \u00b7 nyc",
+    "last": 1791066376.250284
+   },
+   {
+    "name": "Forecast ensemble \u00b7 chicago",
+    "last": 1791066374.193391
+   },
+   {
+    "name": "Forecast ensemble \u00b7 losangeles",
+    "last": 1791066377.160065
+   },
+   {
+    "name": "Forecast ensemble \u00b7 phoenix",
+    "last": 1791066436.2791948
+   },
+   {
+    "name": "Forecast ensemble \u00b7 dallas",
+    "last": 1791066437.197706
+   },
+   {
+    "name": "Forecast ensemble \u00b7 oklahomacity",
+    "last": 1791066438.09042
+   },
+   {
+    "name": "Forecast ensemble \u00b7 sanfrancisco",
+    "last": 1791066439.0711029
+   },
+   {
+    "name": "Forecast ensemble \u00b7 seattle",
+    "last": 1791066440.059654
+   },
+   {
+    "name": "Forecast ensemble \u00b7 lasvegas",
+    "last": 1791066440.946949
+   },
+   {
+    "name": "Forecast ensemble \u00b7 austin",
+    "last": 1791066441.8366961
+   },
+   {
+    "name": "Forecast ensemble \u00b7 denver",
+    "last": 1791066442.7377338
+   },
+   {
+    "name": "Forecast ensemble \u00b7 houston",
+    "last": 1791066443.713077
+   },
+   {
+    "name": "Forecast ensemble \u00b7 minneapolis",
+    "last": 1791066444.622512
+   }
+  ],
+  "stations": [
+   {
+    "signal": "obs_minneapolis",
+    "station": "KMSP",
+    "series": [
+     "KXHIGHTMIN"
+    ],
+    "max_f": 70.97,
+    "src": "METAR 18:53Z",
+    "obs_time": "2026-10-03T18:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_houston",
+    "station": "KHOU",
+    "series": [
+     "KXHIGHTHOU"
+    ],
+    "max_f": 88.97,
+    "src": "METAR 17:53Z",
+    "obs_time": "2026-10-03T17:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_denver",
+    "station": "KDEN",
+    "series": [
+     "KXHIGHDEN"
+    ],
+    "max_f": 81.95,
+    "src": "METAR 19:53Z",
+    "obs_time": "2026-10-03T19:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_austin",
+    "station": "KAUS",
+    "series": [
+     "KXHIGHAUS"
+    ],
+    "max_f": 77.99000000000001,
+    "src": "METAR 18:53Z",
+    "obs_time": "2026-10-03T18:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_lasvegas",
+    "station": "KLAS",
+    "series": [
+     "KXHIGHTLV"
+    ],
+    "max_f": 94.1,
+    "src": "5-min obs 22:15Z",
+    "obs_time": "2026-10-03T22:15:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_seattle",
+    "station": "KSEA",
+    "series": [
+     "KXHIGHTSEA"
+    ],
+    "max_f": 65.3,
+    "src": "5-min obs 22:20Z",
+    "obs_time": "2026-10-03T22:20:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_sanfrancisco",
+    "station": "KSFO",
+    "series": [
+     "KXHIGHTSFO"
+    ],
+    "max_f": 81.5,
+    "src": "5-min obs 22:25Z",
+    "obs_time": "2026-10-03T22:25:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_oklahomacity",
+    "station": "KOKC",
+    "series": [
+     "KXHIGHTOKC"
+    ],
+    "max_f": 68.99000000000001,
+    "src": "METAR 17:52Z",
+    "obs_time": "2026-10-03T17:52:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_dallas",
+    "station": "KDFW",
+    "series": [
+     "KXHIGHTDAL"
+    ],
+    "max_f": 73.85,
+    "src": "METAR 19:06Z",
+    "obs_time": "2026-10-03T19:06:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_phoenix",
+    "station": "KPHX",
+    "series": [
+     "KXHIGHTPHX"
+    ],
+    "max_f": 95.99000000000001,
+    "src": "METAR 21:51Z",
+    "obs_time": "2026-10-03T21:51:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_losangeles",
+    "station": "KLAX",
+    "series": [
+     "KXHIGHLAX"
+    ],
+    "max_f": 99.95,
+    "src": "METAR 18:53Z",
+    "obs_time": "2026-10-03T18:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_chicago",
+    "station": "KMDW",
+    "series": [
+     "KXHIGHCHI"
+    ],
+    "max_f": 68.99000000000001,
+    "src": "METAR 19:53Z",
+    "obs_time": "2026-10-03T19:53:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   },
+   {
+    "signal": "obs_nyc",
+    "station": "KNYC",
+    "series": [
+     "KXHIGHNY"
+    ],
+    "max_f": 69.89,
+    "src": "METAR 18:51Z",
+    "obs_time": "2026-10-03T18:51:00+00:00",
+    "day": "2026-10-03",
+    "errors": {}
+   }
+  ],
+  "budgets": {
+   "forecast": 54.0,
+   "locked": 180.0
+  },
+  "groups": [
+   {
+    "series": "KXATPCHALLENGERMATCH",
+    "date": null,
+    "markets": [
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ROCMON-ROC",
+      "label": "ROC",
+      "sort": 0,
+      "bid": 68,
+      "ask": 69,
+      "bid_size": "2302.50",
+      "ask_size": "3175.00",
+      "last_tick": 1791066713.233709,
+      "close_time": "2026-10-18T10:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ROCMON-MON",
+      "label": "MON",
+      "sort": 0,
+      "bid": 31,
+      "ask": 32,
+      "bid_size": "2343.52",
+      "ask_size": "5474.00",
+      "last_tick": 1791066758.189543,
+      "close_time": "2026-10-18T10:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ARNDE-DE",
+      "label": "DE",
+      "sort": 0,
+      "bid": null,
+      "ask": 42,
+      "bid_size": "0.24",
+      "ask_size": "409.00",
+      "last_tick": 1791066804.169247,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ARNDE-ARN",
+      "label": "ARN",
+      "sort": 0,
+      "bid": 58,
+      "ask": 59,
+      "bid_size": "343.00",
+      "ask_size": "301.24",
+      "last_tick": 1791066726.2314749,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MARMOR-MOR",
+      "label": "MOR",
+      "sort": 0,
+      "bid": 32,
+      "ask": 34,
+      "bid_size": "4848.84",
+      "ask_size": "304.16",
+      "last_tick": 1791066800.165237,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MARMOR-MAR",
+      "label": "MAR",
+      "sort": 0,
+      "bid": 64,
+      "ask": 68,
+      "bid_size": "375.16",
+      "ask_size": "179.16",
+      "last_tick": 1791066800.164834,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SINRAP-SIN",
+      "label": "SIN",
+      "sort": 0,
+      "bid": 51,
+      "ask": 53,
+      "bid_size": "177.00",
+      "ask_size": "234.00",
+      "last_tick": 1791066712.133099,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SINRAP-RAP",
+      "label": "RAP",
+      "sort": 0,
+      "bid": 46,
+      "ask": 48,
+      "bid_size": "225.00",
+      "ask_size": "250.00",
+      "last_tick": 1791066711.1854389,
+      "close_time": "2026-10-18T09:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ESCMIS-MIS",
+      "label": "MIS",
+      "sort": 0,
+      "bid": 5,
+      "ask": 95,
+      "bid_size": "100.00",
+      "ask_size": "180.00",
+      "last_tick": 1791066354.220696,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ESCMIS-ESC",
+      "label": "ESC",
+      "sort": 0,
+      "bid": 5,
+      "ask": 95,
+      "bid_size": "100.00",
+      "ask_size": "150.00",
+      "last_tick": null,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04NIKBER-NIK",
+      "label": "NIK",
+      "sort": 0,
+      "bid": 6,
+      "ask": 95,
+      "bid_size": "500.00",
+      "ask_size": "150.00",
+      "last_tick": 1791066201.235362,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04NIKBER-BER",
+      "label": "BER",
+      "sort": 0,
+      "bid": 5,
+      "ask": 94,
+      "bid_size": "100.00",
+      "ask_size": "572.00",
+      "last_tick": 1791065059.374209,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04VALORL-VAL",
+      "label": "VAL",
+      "sort": 0,
+      "bid": 5,
+      "ask": 75,
+      "bid_size": "100.00",
+      "ask_size": "200.00",
+      "last_tick": 1791066816.132577,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04VALORL-ORL",
+      "label": "ORL",
+      "sort": 0,
+      "bid": 28,
+      "ask": 95,
+      "bid_size": "5714.28",
+      "ask_size": "180.00",
+      "last_tick": 1791066733.2020822,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04DEDURS-URS",
+      "label": "URS",
+      "sort": 0,
+      "bid": 25,
+      "ask": 28,
+      "bid_size": "920.00",
+      "ask_size": "125.00",
+      "last_tick": 1791066803.1354082,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04DEDURS-DED",
+      "label": "DED",
+      "sort": 0,
+      "bid": 71,
+      "ask": 75,
+      "bid_size": "125.00",
+      "ask_size": "1435.00",
+      "last_tick": 1791066796.179164,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ERHTAR-TAR",
+      "label": "TAR",
+      "sort": 0,
+      "bid": 76,
+      "ask": 79,
+      "bid_size": "294.00",
+      "ask_size": "3567.00",
+      "last_tick": 1791066667.168462,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04ERHTAR-ERH",
+      "label": "ERH",
+      "sort": 0,
+      "bid": 20,
+      "ask": 23,
+      "bid_size": "4605.00",
+      "ask_size": "314.00",
+      "last_tick": 1791066796.180758,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04FITKRA-KRA",
+      "label": "KRA",
+      "sort": 0,
+      "bid": 85,
+      "ask": 87,
+      "bid_size": "314.00",
+      "ask_size": "48.00",
+      "last_tick": 1791066708.219401,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04FITKRA-FIT",
+      "label": "FIT",
+      "sort": 0,
+      "bid": 12,
+      "ask": 14,
+      "bid_size": "3588.00",
+      "ask_size": "250.00",
+      "last_tick": 1791066546.1984582,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MARPIE-PIE",
+      "label": "PIE",
+      "sort": 0,
+      "bid": 34,
+      "ask": 36,
+      "bid_size": "1506.02",
+      "ask_size": "3437.00",
+      "last_tick": 1791066707.196992,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MARPIE-MAR",
+      "label": "MAR",
+      "sort": 0,
+      "bid": 64,
+      "ask": 65,
+      "bid_size": "2266.00",
+      "ask_size": "3428.00",
+      "last_tick": 1791066707.195799,
+      "close_time": "2026-10-18T09:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SEGTAJ-TAJ",
+      "label": "TAJ",
+      "sort": 0,
+      "bid": 9,
+      "ask": 11,
+      "bid_size": "725.00",
+      "ask_size": "338.00",
+      "last_tick": 1791066663.1395788,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SEGTAJ-SEG",
+      "label": "SEG",
+      "sort": 0,
+      "bid": 88,
+      "ask": 91,
+      "bid_size": "850.00",
+      "ask_size": "4589.00",
+      "last_tick": 1791066701.152938,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MATBET-MAT",
+      "label": "MAT",
+      "sort": 0,
+      "bid": 89,
+      "ask": 90,
+      "bid_size": "12.00",
+      "ask_size": "76.00",
+      "last_tick": 1791066817.133027,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04MATBET-BET",
+      "label": "BET",
+      "sort": 0,
+      "bid": 9,
+      "ask": 11,
+      "bid_size": "357.00",
+      "ask_size": "254.00",
+      "last_tick": 1791066817.1349802,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04KIKOGU-OGU",
+      "label": "OGU",
+      "sort": 0,
+      "bid": 56,
+      "ask": 61,
+      "bid_size": "559.00",
+      "ask_size": "591.02",
+      "last_tick": 1791066796.1843042,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04KIKOGU-KIK",
+      "label": "KIK",
+      "sort": 0,
+      "bid": 39,
+      "ask": 42,
+      "bid_size": "125.00",
+      "ask_size": "301.00",
+      "last_tick": 1791066796.188711,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04GUTMIL-MIL",
+      "label": "MIL",
+      "sort": 0,
+      "bid": 69,
+      "ask": 71,
+      "bid_size": "451.00",
+      "ask_size": "3670.00",
+      "last_tick": 1791066552.134433,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04GUTMIL-GUT",
+      "label": "GUT",
+      "sort": 0,
+      "bid": 29,
+      "ask": 30,
+      "bid_size": "764.00",
+      "ask_size": "250.00",
+      "last_tick": 1791066707.194046,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04CAMMAR-MAR",
+      "label": "MAR",
+      "sort": 0,
+      "bid": 12,
+      "ask": 13,
+      "bid_size": "4299.00",
+      "ask_size": "1149.00",
+      "last_tick": 1791066813.140234,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04CAMMAR-CAM",
+      "label": "CAM",
+      "sort": 0,
+      "bid": 83,
+      "ask": 86,
+      "bid_size": "609.00",
+      "ask_size": "233.00",
+      "last_tick": 1791066708.221726,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04COCVIV-VIV",
+      "label": "VIV",
+      "sort": 0,
+      "bid": 85,
+      "ask": 87,
+      "bid_size": "114.00",
+      "ask_size": "49.00",
+      "last_tick": 1791066706.138288,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04COCVIV-COC",
+      "label": "COC",
+      "sort": 0,
+      "bid": 12,
+      "ask": 15,
+      "bid_size": "4768.00",
+      "ask_size": "1691.00",
+      "last_tick": 1791066813.141336,
+      "close_time": "2026-10-18T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SAIWAN-WAN",
+      "label": "WAN",
+      "sort": 0,
+      "bid": 3,
+      "ask": 4,
+      "bid_size": "686.00",
+      "ask_size": "371.57",
+      "last_tick": 1791066792.184375,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04SAIWAN-SAI",
+      "label": "SAI",
+      "sort": 0,
+      "bid": 96,
+      "ask": 97,
+      "bid_size": "35.00",
+      "ask_size": "2195.00",
+      "last_tick": 1791066512.229289,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04AGAZHU-ZHU",
+      "label": "ZHU",
+      "sort": 0,
+      "bid": 53,
+      "ask": 56,
+      "bid_size": "75.00",
+      "ask_size": "357.00",
+      "last_tick": 1791066796.186521,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04AGAZHU-AGA",
+      "label": "AGA",
+      "sort": 0,
+      "bid": 43,
+      "ask": 46,
+      "bid_size": "103.43",
+      "ask_size": "409.00",
+      "last_tick": 1791066776.209826,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04BAYICH-ICH",
+      "label": "ICH",
+      "sort": 0,
+      "bid": 77,
+      "ask": 86,
+      "bid_size": "28.00",
+      "ask_size": "74.00",
+      "last_tick": 1791066851.167766,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04BAYICH-BAY",
+      "label": "BAY",
+      "sort": 0,
+      "bid": 9,
+      "ask": 17,
+      "bid_size": "101.00",
+      "ask_size": "1.00",
+      "last_tick": 1791066849.2212322,
+      "close_time": "2026-10-18T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04BANTAK-TAK",
+      "label": "TAK",
+      "sort": 0,
+      "bid": 81,
+      "ask": 84,
+      "bid_size": "1157.00",
+      "ask_size": "583.00",
+      "last_tick": 1791066663.1341069,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04BANTAK-BAN",
+      "label": "BAN",
+      "sort": 0,
+      "bid": 15,
+      "ask": 18,
+      "bid_size": "1669.00",
+      "ask_size": "4401.46",
+      "last_tick": 1791066813.139102,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04YAMBOR-YAM",
+      "label": "YAM",
+      "sort": 0,
+      "bid": 25,
+      "ask": 28,
+      "bid_size": "250.16",
+      "ask_size": "22.00",
+      "last_tick": 1791066501.164225,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04YAMBOR-BOR",
+      "label": "BOR",
+      "sort": 0,
+      "bid": 70,
+      "ask": 73,
+      "bid_size": "22.00",
+      "ask_size": "432.16",
+      "last_tick": 1791066813.1424608,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04PURDE-PUR",
+      "label": "PUR",
+      "sort": 0,
+      "bid": 93,
+      "ask": 94,
+      "bid_size": "7.00",
+      "ask_size": "3490.00",
+      "last_tick": 1791066763.214211,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT04PURDE-DE",
+      "label": "DE",
+      "sort": 0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "1821.00",
+      "ask_size": "16.00",
+      "last_tick": 1791066796.189795,
+      "close_time": "2026-10-18T04:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03BELHAR-HAR",
+      "label": "HAR",
+      "sort": 0,
+      "bid": 53,
+      "ask": 54,
+      "bid_size": "943.24",
+      "ask_size": "8048.27",
+      "last_tick": 1791066704.228019,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03BELHAR-BEL",
+      "label": "BEL",
+      "sort": 0,
+      "bid": 46,
+      "ask": 47,
+      "bid_size": "4317.66",
+      "ask_size": "5613.84",
+      "last_tick": 1791066763.21014,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03HONTAM-TAM",
+      "label": "TAM",
+      "sort": 0,
+      "bid": 27,
+      "ask": 28,
+      "bid_size": "3.00",
+      "ask_size": "8019.00",
+      "last_tick": 1791066708.2277608,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03HONTAM-HON",
+      "label": "HON",
+      "sort": 0,
+      "bid": 72,
+      "ask": 73,
+      "bid_size": "2165.00",
+      "ask_size": "1950.48",
+      "last_tick": 1791066731.153229,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03KACCHE-KAC",
+      "label": "KAC",
+      "sort": 0,
+      "bid": 93,
+      "ask": 94,
+      "bid_size": "8067.00",
+      "ask_size": "3750.34",
+      "last_tick": 1791066850.142455,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03KACCHE-CHE",
+      "label": "CHE",
+      "sort": 0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "500.00",
+      "ask_size": "716.63",
+      "last_tick": 1791066849.223066,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03RAILOM-RAI",
+      "label": "RAI",
+      "sort": 0,
+      "bid": 77,
+      "ask": 79,
+      "bid_size": "275.00",
+      "ask_size": "3609.24",
+      "last_tick": 1791066847.195329,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPCHALLENGERMATCH-26OCT03RAILOM-LOM",
+      "label": "LOM",
+      "sort": 0,
+      "bid": 21,
+      "ask": 23,
+      "bid_size": "651.24",
+      "ask_size": "863.96",
+      "last_tick": 1791066841.2349539,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXATPMATCH",
+    "date": null,
+    "markets": [
+     {
+      "ticker": "KXATPMATCH-26OCT04MEDCER-MED",
+      "label": "MED",
+      "sort": 0,
+      "bid": 70,
+      "ask": 71,
+      "bid_size": "4276.00",
+      "ask_size": "4757.49",
+      "last_tick": 1791066631.215332,
+      "close_time": "2026-10-18T08:30:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT04MEDCER-CER",
+      "label": "CER",
+      "sort": 0,
+      "bid": 29,
+      "ask": 30,
+      "bid_size": "2984.82",
+      "ask_size": "3527.18",
+      "last_tick": 1791066796.183166,
+      "close_time": "2026-10-18T08:30:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT04ZVEDJO-ZVE",
+      "label": "ZVE",
+      "sort": 0,
+      "bid": 71,
+      "ask": 72,
+      "bid_size": "3373.36",
+      "ask_size": "3042.98",
+      "last_tick": 1791066808.133256,
+      "close_time": "2026-10-18T11:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT04ZVEDJO-DJO",
+      "label": "DJO",
+      "sort": 0,
+      "bid": 28,
+      "ask": 29,
+      "bid_size": "2952.00",
+      "ask_size": "15860.02",
+      "last_tick": 1791066796.182007,
+      "close_time": "2026-10-18T11:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT04LEHVAL-VAL",
+      "label": "VAL",
+      "sort": 0,
+      "bid": 28,
+      "ask": 29,
+      "bid_size": "10187.19",
+      "ask_size": "3100.80",
+      "last_tick": 1791066543.1546931,
+      "close_time": "2026-10-18T08:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT04LEHVAL-LEH",
+      "label": "LEH",
+      "sort": 0,
+      "bid": 71,
+      "ask": 72,
+      "bid_size": "807.00",
+      "ask_size": "31989.07",
+      "last_tick": 1791066485.193824,
+      "close_time": "2026-10-18T08:10:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03DERUB-RUB",
+      "label": "RUB",
+      "sort": 0,
+      "bid": 46,
+      "ask": 47,
+      "bid_size": "773.00",
+      "ask_size": "4056.61",
+      "last_tick": 1791065988.4503129,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03DERUB-DE",
+      "label": "DE",
+      "sort": 0,
+      "bid": 53,
+      "ask": 54,
+      "bid_size": "8288.05",
+      "ask_size": "6155.88",
+      "last_tick": 1791066717.2272792,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03ALCSHA-SHA",
+      "label": "SHA",
+      "sort": 0,
+      "bid": 13,
+      "ask": 14,
+      "bid_size": "1488.96",
+      "ask_size": "41762.84",
+      "last_tick": 1791066670.188535,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03ALCSHA-ALC",
+      "label": "ALC",
+      "sort": 0,
+      "bid": 87,
+      "ask": 88,
+      "bid_size": "203.00",
+      "ask_size": "42855.31",
+      "last_tick": 1791066701.154899,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03HURKHA-KHA",
+      "label": "KHA",
+      "sort": 0,
+      "bid": 58,
+      "ask": 59,
+      "bid_size": "18825.37",
+      "ask_size": "12542.37",
+      "last_tick": 1791066744.1587589,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03HURKHA-HUR",
+      "label": "HUR",
+      "sort": 0,
+      "bid": 41,
+      "ask": 42,
+      "bid_size": "6641.00",
+      "ask_size": "32226.05",
+      "last_tick": 1791065977.3425732,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03VACFIL-VAC",
+      "label": "VAC",
+      "sort": 0,
+      "bid": 21,
+      "ask": 23,
+      "bid_size": "9998.20",
+      "ask_size": "52883.96",
+      "last_tick": 1791066847.174334,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03VACFIL-FIL",
+      "label": "FIL",
+      "sort": 0,
+      "bid": 77,
+      "ask": 79,
+      "bid_size": "24188.37",
+      "ask_size": "17199.31",
+      "last_tick": 1791066708.225858,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03MUNJAC-MUN",
+      "label": "MUN",
+      "sort": 0,
+      "bid": 58,
+      "ask": 59,
+      "bid_size": "857.00",
+      "ask_size": "44002.61",
+      "last_tick": 1791066834.4756532,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXATPMATCH-26OCT03MUNJAC-JAC",
+      "label": "JAC",
+      "sort": 0,
+      "bid": 42,
+      "ask": 43,
+      "bid_size": "3199.00",
+      "ask_size": "14656.96",
+      "last_tick": 1791066834.168128,
+      "close_time": "2026-10-18T02:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXWTAMATCH",
+    "date": null,
+    "markets": [
+     {
+      "ticker": "KXWTAMATCH-26OCT03SAKSVI-SVI",
+      "label": "SVI",
+      "sort": 0,
+      "bid": 72,
+      "ask": 73,
+      "bid_size": "30.24",
+      "ask_size": "3486.79",
+      "last_tick": 1791066831.200481,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03SAKSVI-SAK",
+      "label": "SAK",
+      "sort": 0,
+      "bid": 27,
+      "ask": 28,
+      "bid_size": "37.00",
+      "ask_size": "355.24",
+      "last_tick": 1791065910.4181728,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03VEKSWI-VEK",
+      "label": "VEK",
+      "sort": 0,
+      "bid": 9,
+      "ask": 10,
+      "bid_size": "1162.00",
+      "ask_size": "1242.77",
+      "last_tick": 1791066610.133183,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03VEKSWI-SWI",
+      "label": "SWI",
+      "sort": 0,
+      "bid": 90,
+      "ask": 91,
+      "bid_size": "200.00",
+      "ask_size": "6132.00",
+      "last_tick": 1791066610.135031,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03OSTMER-OST",
+      "label": "OST",
+      "sort": 0,
+      "bid": 39,
+      "ask": 40,
+      "bid_size": "1842.31",
+      "ask_size": "14285.65",
+      "last_tick": 1791066663.142609,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03OSTMER-MER",
+      "label": "MER",
+      "sort": 0,
+      "bid": 61,
+      "ask": 62,
+      "bid_size": "489.24",
+      "ask_size": "5125.44",
+      "last_tick": 1791066663.141514,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03BARSAB-SAB",
+      "label": "SAB",
+      "sort": 0,
+      "bid": 86,
+      "ask": 87,
+      "bid_size": "585.24",
+      "ask_size": "57434.37",
+      "last_tick": 1791066795.13259,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03BARSAB-BAR",
+      "label": "BAR",
+      "sort": 0,
+      "bid": 14,
+      "ask": 15,
+      "bid_size": "5777.60",
+      "ask_size": "28078.09",
+      "last_tick": 1791066827.1364942,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03KRAYAS-YAS",
+      "label": "YAS",
+      "sort": 0,
+      "bid": 71,
+      "ask": 72,
+      "bid_size": "30.00",
+      "ask_size": "30027.59",
+      "last_tick": 1791066779.179394,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03KRAYAS-KRA",
+      "label": "KRA",
+      "sort": 0,
+      "bid": 28,
+      "ask": 29,
+      "bid_size": "8311.97",
+      "ask_size": "1952.00",
+      "last_tick": 1791066779.181319,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03BEJOSA-OSA",
+      "label": "OSA",
+      "sort": 0,
+      "bid": 74,
+      "ask": 75,
+      "bid_size": "805.00",
+      "ask_size": "38204.63",
+      "last_tick": 1791066857.209368,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03BEJOSA-BEJ",
+      "label": "BEJ",
+      "sort": 0,
+      "bid": 26,
+      "ask": 27,
+      "bid_size": "650.62",
+      "ask_size": "20467.96",
+      "last_tick": 1791066720.13284,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03MUCSAM-SAM",
+      "label": "SAM",
+      "sort": 0,
+      "bid": 22,
+      "ask": 23,
+      "bid_size": "11167.76",
+      "ask_size": "1298.00",
+      "last_tick": 1791065654.6335812,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03MUCSAM-MUC",
+      "label": "MUC",
+      "sort": 0,
+      "bid": 76,
+      "ask": 77,
+      "bid_size": "7348.55",
+      "ask_size": "330.00",
+      "last_tick": 1791066708.2247648,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03KUDAND-KUD",
+      "label": "KUD",
+      "sort": 0,
+      "bid": 8,
+      "ask": 9,
+      "bid_size": "4890.30",
+      "ask_size": "22440.58",
+      "last_tick": 1791066845.2277179,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03KUDAND-AND",
+      "label": "AND",
+      "sort": 0,
+      "bid": 91,
+      "ask": 92,
+      "bid_size": "11877.12",
+      "ask_size": "20073.46",
+      "last_tick": 1791066845.229721,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03SNIPRE-SNI",
+      "label": "SNI",
+      "sort": 0,
+      "bid": 61,
+      "ask": 62,
+      "bid_size": "17095.58",
+      "ask_size": "1817.16",
+      "last_tick": 1791066726.21037,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03SNIPRE-PRE",
+      "label": "PRE",
+      "sort": 0,
+      "bid": 38,
+      "ask": 39,
+      "bid_size": "112.00",
+      "ask_size": "50871.33",
+      "last_tick": 1791066779.1825101,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03ALESHN-SHN",
+      "label": "SHN",
+      "sort": 0,
+      "bid": 67,
+      "ask": 68,
+      "bid_size": "36.20",
+      "ask_size": "95658.73",
+      "last_tick": 1791066735.151083,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03ALESHN-ALE",
+      "label": "ALE",
+      "sort": 0,
+      "bid": 32,
+      "ask": 33,
+      "bid_size": "33807.30",
+      "ask_size": "448.20",
+      "last_tick": 1791066736.171158,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03NOSGOL-NOS",
+      "label": "NOS",
+      "sort": 0,
+      "bid": 86,
+      "ask": 87,
+      "bid_size": "18994.07",
+      "ask_size": "17456.01",
+      "last_tick": 1791066699.205795,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXWTAMATCH-26OCT03NOSGOL-GOL",
+      "label": "GOL",
+      "sort": 0,
+      "bid": 13,
+      "ask": 14,
+      "bid_size": "7503.21",
+      "ask_size": "38808.25",
+      "last_tick": 1791066699.207092,
+      "close_time": "2026-10-18T03:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHAUS",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHAUS-26OCT03-T79",
+      "label": "< 79\u00b0F",
+      "sort": 79.0,
+      "bid": 98,
+      "ask": 99,
+      "bid_size": "37.00",
+      "ask_size": "1195.80",
+      "last_tick": 1791066856.184469,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT03-B79.5",
+      "label": "79 to 80\u00b0F",
+      "sort": 79.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "1.05",
+      "ask_size": "2.00",
+      "last_tick": 1791066847.196547,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT03-B81.5",
+      "label": "81 to 82\u00b0F",
+      "sort": 81.0,
+      "bid": null,
+      "ask": 2,
+      "bid_size": "0.00",
+      "ask_size": "42.22",
+      "last_tick": 1791066537.209472,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT03-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "1910.97",
+      "last_tick": 1791066344.1981812,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT03-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "8154.08",
+      "last_tick": 1791066192.228336,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT03-T86",
+      "label": "> 86\u00b0F",
+      "sort": 86.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "8934.84",
+      "last_tick": 1791066253.1358469,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHCHI",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHCHI-26OCT03-T64",
+      "label": "< 64\u00b0F",
+      "sort": 64.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "148441.56",
+      "last_tick": 1791066340.134128,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_chicago",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMDW already recorded 69.0F today (METAR 19:53Z); official high will be >= 68F even after a 0.5F safety margin, so market < 64F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT03-B64.5",
+      "label": "64 to 65\u00b0F",
+      "sort": 64.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "108611.48",
+      "last_tick": 1791066359.2451441,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_chicago",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMDW already recorded 69.0F today (METAR 19:53Z); official high will be >= 68F even after a 0.5F safety margin, so market 64 to 65F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT03-B66.5",
+      "label": "66 to 67\u00b0F",
+      "sort": 66.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "100391.01",
+      "last_tick": 1791066328.1365602,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_chicago",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMDW already recorded 69.0F today (METAR 19:53Z); official high will be >= 68F even after a 0.5F safety margin, so market 66 to 67F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT03-B68.5",
+      "label": "68 to 69\u00b0F",
+      "sort": 68.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "135140.80",
+      "last_tick": 1791066450.135417,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT03-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "8470.97",
+      "ask_size": "0.00",
+      "last_tick": 1791066401.2263381,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT03-T71",
+      "label": "> 71\u00b0F",
+      "sort": 71.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "7574.00",
+      "last_tick": 1791065670.398103,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHDEN",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHDEN-26OCT03-T81",
+      "label": "< 81\u00b0F",
+      "sort": 81.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "31719.19",
+      "last_tick": 1791066345.2119071,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": {
+       "sig": "obs_denver",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KDEN already recorded 82.0F today (METAR 19:53Z); official high will be >= 81F even after a 0.5F safety margin, so market < 81F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT03-B81.5",
+      "label": "81 to 82\u00b0F",
+      "sort": 81.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "15701.96",
+      "last_tick": 1791066814.1427798,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT03-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "3222.83",
+      "ask_size": "0.00",
+      "last_tick": 1791066147.169278,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT03-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "36.53",
+      "last_tick": 1791066800.1656241,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT03-B87.5",
+      "label": "87 to 88\u00b0F",
+      "sort": 87.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "4075.49",
+      "last_tick": 1791066383.137703,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT03-T88",
+      "label": "> 88\u00b0F",
+      "sort": 88.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "13568.67",
+      "last_tick": 1791066383.138743,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHLAX",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHLAX-26OCT03-T91",
+      "label": "< 91\u00b0F",
+      "sort": 91.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "483102.04",
+      "last_tick": 1791066620.137934,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market < 91F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT03-B91.5",
+      "label": "91 to 92\u00b0F",
+      "sort": 91.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "306110.61",
+      "last_tick": 1791066322.188853,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market 91 to 92F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT03-B93.5",
+      "label": "93 to 94\u00b0F",
+      "sort": 93.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "324629.10",
+      "last_tick": 1791066380.988714,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market 93 to 94F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT03-B95.5",
+      "label": "95 to 96\u00b0F",
+      "sort": 95.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "354898.56",
+      "last_tick": 1791066387.1343591,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market 95 to 96F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT03-B97.5",
+      "label": "97 to 98\u00b0F",
+      "sort": 97.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "321273.51",
+      "last_tick": 1791066386.136173,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market 97 to 98F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT03-T98",
+      "label": "> 98\u00b0F",
+      "sort": 98.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "270775.55",
+      "ask_size": "0.00",
+      "last_tick": 1791066832.2228422,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_losangeles",
+       "p": 0.97,
+       "conf": 0.9,
+       "locked": true,
+       "side": "yes",
+       "tradeable": false,
+       "why": "LOCKED: KLAX already recorded 100.0F today (METAR 18:53Z); official high will be >= 99F even after a 0.5F safety margin, so market > 98F is YES -> P(YES)=0.97 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHNY",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHNY-26OCT03-T68",
+      "label": "< 68\u00b0F",
+      "sort": 68.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "286104.54",
+      "last_tick": 1791066343.174834,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": {
+       "sig": "obs_nyc",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KNYC already recorded 69.9F today (METAR 18:51Z); official high will be >= 69F even after a 0.5F safety margin, so market < 68F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT03-B68.5",
+      "label": "68 to 69\u00b0F",
+      "sort": 68.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "66438.62",
+      "last_tick": 1791066342.24099,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT03-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "16939.17",
+      "ask_size": "0.00",
+      "last_tick": 1791066794.234454,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT03-B72.5",
+      "label": "72 to 73\u00b0F",
+      "sort": 72.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "14584.34",
+      "last_tick": 1791066380.985165,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT03-B74.5",
+      "label": "74 to 75\u00b0F",
+      "sort": 74.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "2869.28",
+      "last_tick": 1791065819.347106,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT03-T75",
+      "label": "> 75\u00b0F",
+      "sort": 75.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "7595.27",
+      "last_tick": 1791066705.155094,
+      "close_time": "2026-10-04T05:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTDAL",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-T74",
+      "label": "< 74\u00b0F",
+      "sort": 74.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "51174.74",
+      "last_tick": 1791066756.137862,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-B74.5",
+      "label": "74 to 75\u00b0F",
+      "sort": 74.0,
+      "bid": 94,
+      "ask": 99,
+      "bid_size": "14.00",
+      "ask_size": "135.76",
+      "last_tick": 1791066758.763579,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-B76.5",
+      "label": "76 to 77\u00b0F",
+      "sort": 76.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "181.21",
+      "ask_size": "3.00",
+      "last_tick": 1791066778.155356,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-B78.5",
+      "label": "78 to 79\u00b0F",
+      "sort": 78.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "2006.00",
+      "last_tick": 1791066756.1349719,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-B80.5",
+      "label": "80 to 81\u00b0F",
+      "sort": 80.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "2010.00",
+      "last_tick": 1791066756.13691,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT03-T81",
+      "label": "> 81\u00b0F",
+      "sort": 81.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "8744.54",
+      "last_tick": 1791066818.193748,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTHOU",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-T82",
+      "label": "< 82\u00b0F",
+      "sort": 82.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "86068.47",
+      "last_tick": 1791066395.187862,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_houston",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KHOU already recorded 89.0F today (METAR 17:53Z); official high will be >= 88F even after a 0.5F safety margin, so market < 82F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-B82.5",
+      "label": "82 to 83\u00b0F",
+      "sort": 82.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "98472.42",
+      "last_tick": 1791066395.1858869,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_houston",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KHOU already recorded 89.0F today (METAR 17:53Z); official high will be >= 88F even after a 0.5F safety margin, so market 82 to 83F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-B84.5",
+      "label": "84 to 85\u00b0F",
+      "sort": 84.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "92926.47",
+      "last_tick": 1791066395.186909,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_houston",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KHOU already recorded 89.0F today (METAR 17:53Z); official high will be >= 88F even after a 0.5F safety margin, so market 84 to 85F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-B86.5",
+      "label": "86 to 87\u00b0F",
+      "sort": 86.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "92036.03",
+      "last_tick": 1791066395.1846762,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_houston",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KHOU already recorded 89.0F today (METAR 17:53Z); official high will be >= 88F even after a 0.5F safety margin, so market 86 to 87F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-B88.5",
+      "label": "88 to 89\u00b0F",
+      "sort": 88.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "2956.59",
+      "ask_size": "0.00",
+      "last_tick": 1791066808.1369421,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT03-T89",
+      "label": "> 89\u00b0F",
+      "sort": 89.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "680.32",
+      "last_tick": 1791066787.167841,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTLV",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTLV-26OCT03-T92",
+      "label": "< 92\u00b0F",
+      "sort": 92.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "54791.23",
+      "last_tick": 1791066851.170016,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_lasvegas",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAS already recorded 94.1F today (5-min obs 22:15Z); official high will be >= 94F even after a 0.5F safety margin, so market < 92F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT03-B92.5",
+      "label": "92 to 93\u00b0F",
+      "sort": 92.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "53396.13",
+      "last_tick": 1791066851.171168,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": {
+       "sig": "obs_lasvegas",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KLAS already recorded 94.1F today (5-min obs 22:15Z); official high will be >= 94F even after a 0.5F safety margin, so market 92 to 93F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT03-B94.5",
+      "label": "94 to 95\u00b0F",
+      "sort": 94.0,
+      "bid": 27,
+      "ask": 66,
+      "bid_size": "31.66",
+      "ask_size": "56.19",
+      "last_tick": 1791066856.1852689,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT03-B96.5",
+      "label": "96 to 97\u00b0F",
+      "sort": 96.0,
+      "bid": 28,
+      "ask": 29,
+      "bid_size": "49.00",
+      "ask_size": "2.00",
+      "last_tick": 1791066856.1870878,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT03-B98.5",
+      "label": "98 to 99\u00b0F",
+      "sort": 98.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "32.96",
+      "last_tick": 1791066851.172151,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT03-T99",
+      "label": "> 99\u00b0F",
+      "sort": 99.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "4421.35",
+      "last_tick": 1791066851.173085,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTMIN",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-T64",
+      "label": "< 64\u00b0F",
+      "sort": 64.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "43334.76",
+      "last_tick": 1791066302.2129622,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_minneapolis",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMSP already recorded 71.0F today (METAR 18:53Z); official high will be >= 70F even after a 0.5F safety margin, so market < 64F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-B64.5",
+      "label": "64 to 65\u00b0F",
+      "sort": 64.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "42490.75",
+      "last_tick": 1791066303.1354299,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_minneapolis",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMSP already recorded 71.0F today (METAR 18:53Z); official high will be >= 70F even after a 0.5F safety margin, so market 64 to 65F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-B66.5",
+      "label": "66 to 67\u00b0F",
+      "sort": 66.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "43192.23",
+      "last_tick": 1791066303.136678,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_minneapolis",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMSP already recorded 71.0F today (METAR 18:53Z); official high will be >= 70F even after a 0.5F safety margin, so market 66 to 67F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-B68.5",
+      "label": "68 to 69\u00b0F",
+      "sort": 68.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "43269.91",
+      "last_tick": 1791066303.138446,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": {
+       "sig": "obs_minneapolis",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KMSP already recorded 71.0F today (METAR 18:53Z); official high will be >= 70F even after a 0.5F safety margin, so market 68 to 69F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 99,
+      "ask": null,
+      "bid_size": "4458.35",
+      "ask_size": "0.00",
+      "last_tick": 1791065734.2091699,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT03-T71",
+      "label": "> 71\u00b0F",
+      "sort": 71.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "3911.33",
+      "last_tick": 1791065734.2097611,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTOKC",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-T71",
+      "label": "< 71\u00b0F",
+      "sort": 71.0,
+      "bid": 84,
+      "ask": 93,
+      "bid_size": "8.00",
+      "ask_size": "38.95",
+      "last_tick": 1791066856.1862779,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-B71.5",
+      "label": "71 to 72\u00b0F",
+      "sort": 71.0,
+      "bid": 3,
+      "ask": 6,
+      "bid_size": "18.00",
+      "ask_size": "15.00",
+      "last_tick": 1791066855.138092,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-B73.5",
+      "label": "73 to 74\u00b0F",
+      "sort": 73.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "38.00",
+      "ask_size": "19.80",
+      "last_tick": 1791066841.23757,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-B75.5",
+      "label": "75 to 76\u00b0F",
+      "sort": 75.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "1507.00",
+      "last_tick": 1791065982.409556,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-B77.5",
+      "label": "77 to 78\u00b0F",
+      "sort": 77.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "8277.83",
+      "last_tick": 1791065380.403615,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT03-T78",
+      "label": "> 78\u00b0F",
+      "sort": 78.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "13299.83",
+      "last_tick": 1791066105.186434,
+      "close_time": "2026-10-04T06:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTPHX",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-T93",
+      "label": "< 93\u00b0F",
+      "sort": 93.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "92686.90",
+      "last_tick": 1791066344.1883368,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": {
+       "sig": "obs_phoenix",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KPHX already recorded 96.0F today (METAR 21:51Z); official high will be >= 95F even after a 0.5F safety margin, so market < 93F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-B93.5",
+      "label": "93 to 94\u00b0F",
+      "sort": 93.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "91960.90",
+      "last_tick": 1791066344.190399,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": {
+       "sig": "obs_phoenix",
+       "p": 0.03,
+       "conf": 0.9,
+       "locked": true,
+       "side": "no",
+       "tradeable": false,
+       "why": "LOCKED: KPHX already recorded 96.0F today (METAR 21:51Z); official high will be >= 95F even after a 0.5F safety margin, so market 93 to 94F is NO -> P(YES)=0.03 [lock trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-B95.5",
+      "label": "95 to 96\u00b0F",
+      "sort": 95.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "21871.43",
+      "last_tick": 1791066843.135735,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-B97.5",
+      "label": "97 to 98\u00b0F",
+      "sort": 97.0,
+      "bid": 88,
+      "ask": 94,
+      "bid_size": "1.00",
+      "ask_size": "19.15",
+      "last_tick": 1791066823.213252,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-B99.5",
+      "label": "99 to 100\u00b0F",
+      "sort": 99.0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "19.15",
+      "ask_size": "187.00",
+      "last_tick": 1791066762.182383,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT03-T100",
+      "label": "> 100\u00b0F",
+      "sort": 100.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "241.98",
+      "last_tick": 1791066744.160789,
+      "close_time": "2026-10-04T07:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTSEA",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-T66",
+      "label": "< 66\u00b0F",
+      "sort": 66.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "54832.84",
+      "last_tick": 1791066572.237499,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-B66.5",
+      "label": "66 to 67\u00b0F",
+      "sort": 66.0,
+      "bid": 59,
+      "ask": 66,
+      "bid_size": "3.58",
+      "ask_size": "13.00",
+      "last_tick": 1791066808.1395872,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-B68.5",
+      "label": "68 to 69\u00b0F",
+      "sort": 68.0,
+      "bid": null,
+      "ask": 35,
+      "bid_size": "0.12",
+      "ask_size": "16.00",
+      "last_tick": 1791066804.17048,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 1,
+      "ask": 3,
+      "bid_size": "235.96",
+      "ask_size": "89.00",
+      "last_tick": 1791066804.171489,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-B72.5",
+      "label": "72 to 73\u00b0F",
+      "sort": 72.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "53.00",
+      "last_tick": 1791066795.136031,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT03-T73",
+      "label": "> 73\u00b0F",
+      "sort": 73.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "237.43",
+      "last_tick": 1791066572.239452,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTSFO",
+    "date": "2026-10-03",
+    "markets": [
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-T83",
+      "label": "< 83\u00b0F",
+      "sort": 83.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "98639.56",
+      "last_tick": 1791066786.1449862,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "2486.07",
+      "last_tick": 1791066826.19783,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": 10,
+      "ask": 11,
+      "bid_size": "72.00",
+      "ask_size": "93.27",
+      "last_tick": 1791066852.1908128,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-B87.5",
+      "label": "87 to 88\u00b0F",
+      "sort": 87.0,
+      "bid": null,
+      "ask": 19,
+      "bid_size": "0.81",
+      "ask_size": "50.00",
+      "last_tick": 1791066855.135693,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-B89.5",
+      "label": "89 to 90\u00b0F",
+      "sort": 89.0,
+      "bid": 25,
+      "ask": 35,
+      "bid_size": "6.00",
+      "ask_size": "40.00",
+      "last_tick": 1791066856.183578,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT03-T90",
+      "label": "> 90\u00b0F",
+      "sort": 90.0,
+      "bid": 44,
+      "ask": 49,
+      "bid_size": "35.36",
+      "ask_size": "23.10",
+      "last_tick": 1791066855.1340811,
+      "close_time": "2026-10-04T08:00:00Z",
+      "read": null,
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHAUS",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHAUS-26OCT04-T80",
+      "label": "< 80\u00b0F",
+      "sort": 80.0,
+      "bid": 24,
+      "ask": 25,
+      "bid_size": "374.31",
+      "ask_size": "47.00",
+      "last_tick": 1791066826.198501,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.458,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market < 80F, lead 1d -> fair_prob=0.458 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT04-B80.5",
+      "label": "80 to 81\u00b0F",
+      "sort": 80.0,
+      "bid": 28,
+      "ask": 29,
+      "bid_size": "7.57",
+      "ask_size": "36.00",
+      "last_tick": 1791066800.166063,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.227,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market 80 to 81F, lead 1d -> fair_prob=0.227 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT04-B82.5",
+      "label": "82 to 83\u00b0F",
+      "sort": 82.0,
+      "bid": 30,
+      "ask": 31,
+      "bid_size": "27.00",
+      "ask_size": "512.20",
+      "last_tick": 1791066826.1841412,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.17,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market 82 to 83F, lead 1d -> fair_prob=0.170 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT04-B84.5",
+      "label": "84 to 85\u00b0F",
+      "sort": 84.0,
+      "bid": 15,
+      "ask": 16,
+      "bid_size": "19.00",
+      "ask_size": "642.44",
+      "last_tick": 1791066826.188876,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.105,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market 84 to 85F, lead 1d -> fair_prob=0.105 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT04-B86.5",
+      "label": "86 to 87\u00b0F",
+      "sort": 86.0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "383.00",
+      "ask_size": "387.10",
+      "last_tick": 1791066853.223727,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.031,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market 86 to 87F, lead 1d -> fair_prob=0.031 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHAUS-26OCT04-T87",
+      "label": "> 87\u00b0F",
+      "sort": 87.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "2645.26",
+      "ask_size": "274.43",
+      "last_tick": 1791066800.168513,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_austin",
+       "p": 0.008,
+       "conf": 0.6,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.2F (P10-P90 76-83F), market > 87F, lead 1d -> fair_prob=0.008 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHCHI",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHCHI-26OCT04-T70",
+      "label": "< 70\u00b0F",
+      "sort": 70.0,
+      "bid": 4,
+      "ask": 5,
+      "bid_size": "20.00",
+      "ask_size": "79.00",
+      "last_tick": 1791066831.213048,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.404,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market < 70F, lead 1d -> fair_prob=0.404 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT04-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 17,
+      "ask": 18,
+      "bid_size": "88.00",
+      "ask_size": "13.75",
+      "last_tick": 1791066827.137686,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.343,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market 70 to 71F, lead 1d -> fair_prob=0.343 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT04-B72.5",
+      "label": "72 to 73\u00b0F",
+      "sort": 72.0,
+      "bid": 38,
+      "ask": 39,
+      "bid_size": "77.00",
+      "ask_size": "53.98",
+      "last_tick": 1791066831.203273,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.184,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market 72 to 73F, lead 1d -> fair_prob=0.184 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT04-B74.5",
+      "label": "74 to 75\u00b0F",
+      "sort": 74.0,
+      "bid": 32,
+      "ask": 33,
+      "bid_size": "113.00",
+      "ask_size": "68.00",
+      "last_tick": 1791066831.207938,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.059,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market 74 to 75F, lead 1d -> fair_prob=0.059 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT04-B76.5",
+      "label": "76 to 77\u00b0F",
+      "sort": 76.0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "45.00",
+      "ask_size": "139.00",
+      "last_tick": 1791066831.2108421,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.009,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market 76 to 77F, lead 1d -> fair_prob=0.009 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHCHI-26OCT04-T77",
+      "label": "> 77\u00b0F",
+      "sort": 77.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "36.39",
+      "ask_size": "178.61",
+      "last_tick": 1791066315.1984808,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_chicago",
+       "p": 0.0,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 69.4F (P10-P90 68-72F), market > 77F, lead 1d -> fair_prob=0.000 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHDEN",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHDEN-26OCT04-T78",
+      "label": "< 78\u00b0F",
+      "sort": 78.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "499.21",
+      "ask_size": "105.95",
+      "last_tick": 1791066804.173634,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.052,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market < 78F, lead 1d -> fair_prob=0.052 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT04-B78.5",
+      "label": "78 to 79\u00b0F",
+      "sort": 78.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "900.21",
+      "ask_size": "87.95",
+      "last_tick": 1791066806.134198,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.139,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market 78 to 79F, lead 1d -> fair_prob=0.139 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT04-B80.5",
+      "label": "80 to 81\u00b0F",
+      "sort": 80.0,
+      "bid": 27,
+      "ask": 28,
+      "bid_size": "2.00",
+      "ask_size": "82.95",
+      "last_tick": 1791066805.137228,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.317,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market 80 to 81F, lead 1d -> fair_prob=0.317 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT04-B82.5",
+      "label": "82 to 83\u00b0F",
+      "sort": 82.0,
+      "bid": 46,
+      "ask": 47,
+      "bid_size": "84.00",
+      "ask_size": "27.00",
+      "last_tick": 1791066805.1348228,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.337,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market 82 to 83F, lead 1d -> fair_prob=0.337 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT04-B84.5",
+      "label": "84 to 85\u00b0F",
+      "sort": 84.0,
+      "bid": 22,
+      "ask": 23,
+      "bid_size": "144.00",
+      "ask_size": "47.01",
+      "last_tick": 1791066832.2242649,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.137,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market 84 to 85F, lead 1d -> fair_prob=0.137 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHDEN-26OCT04-T85",
+      "label": "> 85\u00b0F",
+      "sort": 85.0,
+      "bid": 2,
+      "ask": 3,
+      "bid_size": "187.00",
+      "ask_size": "4.00",
+      "last_tick": 1791066707.2039418,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_denver",
+       "p": 0.018,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.1F (P10-P90 79-83F), market > 85F, lead 1d -> fair_prob=0.018 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHLAX",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHLAX-26OCT04-T91",
+      "label": "< 91\u00b0F",
+      "sort": 91.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "842.13",
+      "last_tick": 1791066814.143882,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.013,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market < 91F, lead 1d -> fair_prob=0.013 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT04-B91.5",
+      "label": "91 to 92\u00b0F",
+      "sort": 91.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "331.40",
+      "ask_size": "567.59",
+      "last_tick": 1791066814.1371489,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.082,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market 91 to 92F, lead 1d -> fair_prob=0.082 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT04-B93.5",
+      "label": "93 to 94\u00b0F",
+      "sort": 93.0,
+      "bid": 4,
+      "ask": 5,
+      "bid_size": "96.01",
+      "ask_size": "163.30",
+      "last_tick": 1791066813.1493819,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.169,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market 93 to 94F, lead 1d -> fair_prob=0.169 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT04-B95.5",
+      "label": "95 to 96\u00b0F",
+      "sort": 95.0,
+      "bid": 12,
+      "ask": 14,
+      "bid_size": "55.00",
+      "ask_size": "143.00",
+      "last_tick": 1791066854.244025,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.098,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market 95 to 96F, lead 1d -> fair_prob=0.098 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT04-B97.5",
+      "label": "97 to 98\u00b0F",
+      "sort": 97.0,
+      "bid": 20,
+      "ask": 21,
+      "bid_size": "14.01",
+      "ask_size": "177.98",
+      "last_tick": 1791066814.138774,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.015,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market 97 to 98F, lead 1d -> fair_prob=0.015 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHLAX-26OCT04-T98",
+      "label": "> 98\u00b0F",
+      "sort": 98.0,
+      "bid": 65,
+      "ask": 66,
+      "bid_size": "266.26",
+      "ask_size": "214.13",
+      "last_tick": 1791066854.238818,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_losangeles",
+       "p": 0.622,
+       "conf": 0.5020000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 102.8F (P10-P90 93-104F), market > 98F, lead 1d -> fair_prob=0.622 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHNY",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHNY-26OCT04-T63",
+      "label": "< 63\u00b0F",
+      "sort": 63.0,
+      "bid": 21,
+      "ask": 22,
+      "bid_size": "50.00",
+      "ask_size": "78.38",
+      "last_tick": 1791066825.1584792,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.13,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market < 63F, lead 1d -> fair_prob=0.130 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT04-B63.5",
+      "label": "63 to 64\u00b0F",
+      "sort": 63.0,
+      "bid": 51,
+      "ask": 53,
+      "bid_size": "2.00",
+      "ask_size": "29.00",
+      "last_tick": 1791066824.237383,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.301,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market 63 to 64F, lead 1d -> fair_prob=0.301 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT04-B65.5",
+      "label": "65 to 66\u00b0F",
+      "sort": 65.0,
+      "bid": 25,
+      "ask": 26,
+      "bid_size": "13.05",
+      "ask_size": "212.85",
+      "last_tick": 1791066824.2356548,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.356,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market 65 to 66F, lead 1d -> fair_prob=0.356 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT04-B67.5",
+      "label": "67 to 68\u00b0F",
+      "sort": 67.0,
+      "bid": 2,
+      "ask": 3,
+      "bid_size": "386.53",
+      "ask_size": "183.85",
+      "last_tick": 1791066824.238165,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.174,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market 67 to 68F, lead 1d -> fair_prob=0.174 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT04-B69.5",
+      "label": "69 to 70\u00b0F",
+      "sort": 69.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "408.34",
+      "ask_size": "186.85",
+      "last_tick": 1791066825.160245,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.034,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market 69 to 70F, lead 1d -> fair_prob=0.034 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHNY-26OCT04-T70",
+      "label": "> 70\u00b0F",
+      "sort": 70.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "3106.85",
+      "last_tick": 1791066824.239763,
+      "close_time": "2026-10-05T05:00:00Z",
+      "read": {
+       "sig": "weather_nyc",
+       "p": 0.004,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-66F), market > 70F, lead 1d -> fair_prob=0.004 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTDAL",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-T80",
+      "label": "< 80\u00b0F",
+      "sort": 80.0,
+      "bid": 16,
+      "ask": 18,
+      "bid_size": "18.00",
+      "ask_size": "113.65",
+      "last_tick": 1791066369.14121,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.426,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market < 80F, lead 1d -> fair_prob=0.426 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-B80.5",
+      "label": "80 to 81\u00b0F",
+      "sort": 80.0,
+      "bid": 35,
+      "ask": 36,
+      "bid_size": "7.96",
+      "ask_size": "10.00",
+      "last_tick": 1791066367.1406898,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.291,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market 80 to 81F, lead 1d -> fair_prob=0.291 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-B82.5",
+      "label": "82 to 83\u00b0F",
+      "sort": 82.0,
+      "bid": 37,
+      "ask": 38,
+      "bid_size": "111.40",
+      "ask_size": "41.01",
+      "last_tick": 1791066298.212241,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.167,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market 82 to 83F, lead 1d -> fair_prob=0.167 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-B84.5",
+      "label": "84 to 85\u00b0F",
+      "sort": 84.0,
+      "bid": 9,
+      "ask": 10,
+      "bid_size": "118.00",
+      "ask_size": "63.00",
+      "last_tick": 1791066718.153645,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.082,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market 84 to 85F, lead 1d -> fair_prob=0.082 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-B86.5",
+      "label": "86 to 87\u00b0F",
+      "sort": 86.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "2251.89",
+      "ask_size": "136.00",
+      "last_tick": 1791066007.188311,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.03,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market 86 to 87F, lead 1d -> fair_prob=0.030 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTDAL-26OCT04-T87",
+      "label": "> 87\u00b0F",
+      "sort": 87.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "1.89",
+      "ask_size": "96.00",
+      "last_tick": 1791065123.360425,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_dallas",
+       "p": 0.004,
+       "conf": 0.61,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 79.3F (P10-P90 77-83F), market > 87F, lead 1d -> fair_prob=0.004 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTHOU",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-T81",
+      "label": "< 81\u00b0F",
+      "sort": 81.0,
+      "bid": 7,
+      "ask": 9,
+      "bid_size": "65.00",
+      "ask_size": "66.00",
+      "last_tick": 1791066142.149534,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.282,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market < 81F, lead 1d -> fair_prob=0.282 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-B81.5",
+      "label": "81 to 82\u00b0F",
+      "sort": 81.0,
+      "bid": 24,
+      "ask": 25,
+      "bid_size": "93.96",
+      "ask_size": "21.00",
+      "last_tick": 1791066076.9688928,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.242,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market 81 to 82F, lead 1d -> fair_prob=0.242 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": 37,
+      "ask": 39,
+      "bid_size": "82.37",
+      "ask_size": "95.00",
+      "last_tick": 1791066358.228742,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.237,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market 83 to 84F, lead 1d -> fair_prob=0.237 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": 21,
+      "ask": 22,
+      "bid_size": "3.00",
+      "ask_size": "55.00",
+      "last_tick": 1791066420.138658,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.162,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market 85 to 86F, lead 1d -> fair_prob=0.162 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-B87.5",
+      "label": "87 to 88\u00b0F",
+      "sort": 87.0,
+      "bid": 3,
+      "ask": 4,
+      "bid_size": "140.00",
+      "ask_size": "4.00",
+      "last_tick": 1791066714.154539,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.063,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market 87 to 88F, lead 1d -> fair_prob=0.063 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTHOU-26OCT04-T88",
+      "label": "> 88\u00b0F",
+      "sort": 88.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "178.82",
+      "ask_size": "69.00",
+      "last_tick": 1791065403.446652,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_houston",
+       "p": 0.013,
+       "conf": 0.606,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 81.9F (P10-P90 79-85F), market > 88F, lead 1d -> fair_prob=0.013 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTLV",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTLV-26OCT04-T93",
+      "label": "< 93\u00b0F",
+      "sort": 93.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "1.00",
+      "last_tick": 1791066029.137689,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.101,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market < 93F, lead 1d -> fair_prob=0.101 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT04-B93.5",
+      "label": "93 to 94\u00b0F",
+      "sort": 93.0,
+      "bid": 3,
+      "ask": 4,
+      "bid_size": "3.72",
+      "ask_size": "18.00",
+      "last_tick": 1791066603.159598,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.295,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market 93 to 94F, lead 1d -> fair_prob=0.295 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT04-B95.5",
+      "label": "95 to 96\u00b0F",
+      "sort": 95.0,
+      "bid": 50,
+      "ask": 51,
+      "bid_size": "3.00",
+      "ask_size": "38.00",
+      "last_tick": 1791066564.246006,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.401,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market 95 to 96F, lead 1d -> fair_prob=0.401 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT04-B97.5",
+      "label": "97 to 98\u00b0F",
+      "sort": 97.0,
+      "bid": 45,
+      "ask": 46,
+      "bid_size": "20.00",
+      "ask_size": "17.00",
+      "last_tick": 1791066020.196177,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.18,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market 97 to 98F, lead 1d -> fair_prob=0.180 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT04-B99.5",
+      "label": "99 to 100\u00b0F",
+      "sort": 99.0,
+      "bid": 4,
+      "ask": 5,
+      "bid_size": "54.00",
+      "ask_size": "6.00",
+      "last_tick": 1791066846.134537,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.022,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market 99 to 100F, lead 1d -> fair_prob=0.022 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTLV-26OCT04-T100",
+      "label": "> 100\u00b0F",
+      "sort": 100.0,
+      "bid": null,
+      "ask": 2,
+      "bid_size": "0.00",
+      "ask_size": "74.00",
+      "last_tick": 1791066380.9603982,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_lasvegas",
+       "p": 0.001,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 94.8F (P10-P90 93-96F), market > 100F, lead 1d -> fair_prob=0.001 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTMIN",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-T64",
+      "label": "< 64\u00b0F",
+      "sort": 64.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "704.14",
+      "ask_size": "16.00",
+      "last_tick": 1791066713.23782,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.2,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market < 64F, lead 1d -> fair_prob=0.200 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-B64.5",
+      "label": "64 to 65\u00b0F",
+      "sort": 64.0,
+      "bid": 4,
+      "ask": 6,
+      "bid_size": "39.00",
+      "ask_size": "9.00",
+      "last_tick": 1791066839.185306,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.32,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market 64 to 65F, lead 1d -> fair_prob=0.320 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-B66.5",
+      "label": "66 to 67\u00b0F",
+      "sort": 66.0,
+      "bid": 18,
+      "ask": 20,
+      "bid_size": "5.00",
+      "ask_size": "8.00",
+      "last_tick": 1791066672.1787462,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.254,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market 66 to 67F, lead 1d -> fair_prob=0.254 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-B68.5",
+      "label": "68 to 69\u00b0F",
+      "sort": 68.0,
+      "bid": 58,
+      "ask": 59,
+      "bid_size": "23.00",
+      "ask_size": "43.00",
+      "last_tick": 1791066361.1884632,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.151,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market 68 to 69F, lead 1d -> fair_prob=0.151 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-B70.5",
+      "label": "70 to 71\u00b0F",
+      "sort": 70.0,
+      "bid": 13,
+      "ask": 14,
+      "bid_size": "189.89",
+      "ask_size": "37.00",
+      "last_tick": 1791066418.24334,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.065,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market 70 to 71F, lead 1d -> fair_prob=0.065 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTMIN-26OCT04-T71",
+      "label": "> 71\u00b0F",
+      "sort": 71.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "30.34",
+      "ask_size": "126.83",
+      "last_tick": 1791066348.147069,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_minneapolis",
+       "p": 0.01,
+       "conf": 0.622,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 64.5F (P10-P90 63-68F), market > 71F, lead 1d -> fair_prob=0.010 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTOKC",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-T79",
+      "label": "< 79\u00b0F",
+      "sort": 79.0,
+      "bid": 1,
+      "ask": 3,
+      "bid_size": "697.00",
+      "ask_size": "80.48",
+      "last_tick": 1791066827.138481,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.539,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market < 79F, lead 1d -> fair_prob=0.539 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-B79.5",
+      "label": "79 to 80\u00b0F",
+      "sort": 79.0,
+      "bid": 19,
+      "ask": 20,
+      "bid_size": "4.00",
+      "ask_size": "43.27",
+      "last_tick": 1791066853.217528,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.241,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market 79 to 80F, lead 1d -> fair_prob=0.241 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-B81.5",
+      "label": "81 to 82\u00b0F",
+      "sort": 81.0,
+      "bid": 41,
+      "ask": 42,
+      "bid_size": "2.00",
+      "ask_size": "22.72",
+      "last_tick": 1791066827.1392682,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.147,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market 81 to 82F, lead 1d -> fair_prob=0.147 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": 31,
+      "ask": 32,
+      "bid_size": "13.00",
+      "ask_size": "51.00",
+      "last_tick": 1791066827.143281,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.063,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market 83 to 84F, lead 1d -> fair_prob=0.063 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": 7,
+      "ask": 8,
+      "bid_size": "311.51",
+      "ask_size": "69.00",
+      "last_tick": 1791066828.229463,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.01,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market 85 to 86F, lead 1d -> fair_prob=0.010 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTOKC-26OCT04-T86",
+      "label": "> 86\u00b0F",
+      "sort": 86.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "2000.00",
+      "ask_size": "124.24",
+      "last_tick": 1791066828.231266,
+      "close_time": "2026-10-05T06:00:00Z",
+      "read": {
+       "sig": "weather_oklahomacity",
+       "p": 0.0,
+       "conf": 0.6240000000000001,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 77.6F (P10-P90 76-81F), market > 86F, lead 1d -> fair_prob=0.000 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTPHX",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-T97",
+      "label": "< 97\u00b0F",
+      "sort": 97.0,
+      "bid": null,
+      "ask": 2,
+      "bid_size": "0.75",
+      "ask_size": "173.00",
+      "last_tick": 1791066365.138934,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.29,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market < 97F, lead 1d -> fair_prob=0.290 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-B97.5",
+      "label": "97 to 98\u00b0F",
+      "sort": 97.0,
+      "bid": 10,
+      "ask": 11,
+      "bid_size": "68.00",
+      "ask_size": "10.00",
+      "last_tick": 1791066786.143083,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.414,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market 97 to 98F, lead 1d -> fair_prob=0.414 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-B99.5",
+      "label": "99 to 100\u00b0F",
+      "sort": 99.0,
+      "bid": 60,
+      "ask": 61,
+      "bid_size": "20.00",
+      "ask_size": "10.00",
+      "last_tick": 1791066821.1491761,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.25,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market 99 to 100F, lead 1d -> fair_prob=0.250 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-B101.5",
+      "label": "101 to 102\u00b0F",
+      "sort": 101.0,
+      "bid": 26,
+      "ask": 27,
+      "bid_size": "253.32",
+      "ask_size": "18.00",
+      "last_tick": 1791066395.189636,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.043,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market 101 to 102F, lead 1d -> fair_prob=0.043 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-B103.5",
+      "label": "103 to 104\u00b0F",
+      "sort": 103.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "255.50",
+      "ask_size": "51.00",
+      "last_tick": 1791065421.3619049,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.002,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market 103 to 104F, lead 1d -> fair_prob=0.002 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTPHX-26OCT04-T104",
+      "label": "> 104\u00b0F",
+      "sort": 104.0,
+      "bid": null,
+      "ask": 1,
+      "bid_size": "0.00",
+      "ask_size": "197.96",
+      "last_tick": 1791066380.996586,
+      "close_time": "2026-10-05T07:00:00Z",
+      "read": {
+       "sig": "weather_phoenix",
+       "p": 0.0,
+       "conf": 0.65,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 97.1F (P10-P90 96-98F), market > 104F, lead 1d -> fair_prob=0.000 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTSEA",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-T69",
+      "label": "< 69\u00b0F",
+      "sort": 69.0,
+      "bid": 9,
+      "ask": 11,
+      "bid_size": "56.00",
+      "ask_size": "2.00",
+      "last_tick": 1791065692.350587,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.307,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market < 69F, lead 1d -> fair_prob=0.307 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-B69.5",
+      "label": "69 to 70\u00b0F",
+      "sort": 69.0,
+      "bid": 14,
+      "ask": 15,
+      "bid_size": "188.00",
+      "ask_size": "3.00",
+      "last_tick": 1791066034.221735,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.241,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market 69 to 70F, lead 1d -> fair_prob=0.241 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-B71.5",
+      "label": "71 to 72\u00b0F",
+      "sort": 71.0,
+      "bid": 36,
+      "ask": 37,
+      "bid_size": "7.00",
+      "ask_size": "19.00",
+      "last_tick": 1791066367.137055,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.108,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market 71 to 72F, lead 1d -> fair_prob=0.108 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-B73.5",
+      "label": "73 to 74\u00b0F",
+      "sort": 73.0,
+      "bid": 31,
+      "ask": 32,
+      "bid_size": "39.00",
+      "ask_size": "43.00",
+      "last_tick": 1791066718.158433,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.115,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market 73 to 74F, lead 1d -> fair_prob=0.115 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-B75.5",
+      "label": "75 to 76\u00b0F",
+      "sort": 75.0,
+      "bid": 6,
+      "ask": 7,
+      "bid_size": "15.94",
+      "ask_size": "1.00",
+      "last_tick": 1791066291.253561,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.15,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market 75 to 76F, lead 1d -> fair_prob=0.150 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSEA-26OCT04-T76",
+      "label": "> 76\u00b0F",
+      "sort": 76.0,
+      "bid": 1,
+      "ask": 2,
+      "bid_size": "72.48",
+      "ask_size": "89.00",
+      "last_tick": 1791066503.216758,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_seattle",
+       "p": 0.08,
+       "conf": 0.5720000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 68.8F (P10-P90 67-75F), market > 76F, lead 1d -> fair_prob=0.080 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   },
+   {
+    "series": "KXHIGHTSFO",
+    "date": "2026-10-04",
+    "markets": [
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-T83",
+      "label": "< 83\u00b0F",
+      "sort": 83.0,
+      "bid": 8,
+      "ask": 9,
+      "bid_size": "90.00",
+      "ask_size": "4.24",
+      "last_tick": 1791066308.13788,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.001,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market < 83F, lead 1d -> fair_prob=0.001 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-B83.5",
+      "label": "83 to 84\u00b0F",
+      "sort": 83.0,
+      "bid": 13,
+      "ask": 14,
+      "bid_size": "20.00",
+      "ask_size": "94.18",
+      "last_tick": 1791066063.13517,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.008,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market 83 to 84F, lead 1d -> fair_prob=0.008 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-B85.5",
+      "label": "85 to 86\u00b0F",
+      "sort": 85.0,
+      "bid": 22,
+      "ask": 24,
+      "bid_size": "1.93",
+      "ask_size": "43.00",
+      "last_tick": 1791066093.2070882,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.033,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market 85 to 86F, lead 1d -> fair_prob=0.033 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-B87.5",
+      "label": "87 to 88\u00b0F",
+      "sort": 87.0,
+      "bid": 21,
+      "ask": 23,
+      "bid_size": "164.00",
+      "ask_size": "54.00",
+      "last_tick": 1791066512.237709,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.115,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market 87 to 88F, lead 1d -> fair_prob=0.115 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-B89.5",
+      "label": "89 to 90\u00b0F",
+      "sort": 89.0,
+      "bid": 15,
+      "ask": 16,
+      "bid_size": "12.00",
+      "ask_size": "52.15",
+      "last_tick": 1791066065.1508322,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.243,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market 89 to 90F, lead 1d -> fair_prob=0.243 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     },
+     {
+      "ticker": "KXHIGHTSFO-26OCT04-T90",
+      "label": "> 90\u00b0F",
+      "sort": 90.0,
+      "bid": 11,
+      "ask": 12,
+      "bid_size": "20.00",
+      "ask_size": "118.02",
+      "last_tick": 1791066657.220885,
+      "close_time": "2026-10-05T08:00:00Z",
+      "read": {
+       "sig": "weather_sanfrancisco",
+       "p": 0.6,
+       "conf": 0.6360000000000002,
+       "locked": false,
+       "side": null,
+       "tradeable": false,
+       "why": "2026-10-04 ensemble 82 runs: median 90.8F (P10-P90 88-93F), market > 90F, lead 1d -> fair_prob=0.600 [forecast trading OFF: shown for context only]"
+      },
+      "position": null,
+      "lock_seen": null
+     }
+    ],
+    "risk_forecast": 0.0,
+    "risk_locked": 0.0
+   }
+  ]
+ }
+}
