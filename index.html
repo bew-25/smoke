@@ -152,6 +152,11 @@ tr:last-child td{border-bottom:0}
 .panel.folded .sec-head.fold h2::after{transform:rotate(-90deg)}
 .panel.folded .sec-head{margin-bottom:0}
 .foot{font-size:12px;color:var(--muted);max-width:90ch}
+.bkpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
+.bk{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
+.bk .l{font-size:11.5px;color:var(--muted)} .bk .v{font:600 18px/1.2 var(--mono);margin-top:4px} .bk .s{font-size:11.5px;color:var(--muted);margin-top:2px}
+@media (max-width:760px){.bkpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.chip.bp{color:var(--pm);border-color:color-mix(in srgb,var(--pm) 40%,var(--line))} .chip.bl{color:var(--ka);border-color:color-mix(in srgb,var(--ka) 40%,var(--line))}
 :focus-visible{outline:2px solid var(--sky);outline-offset:2px}
 </style>
 
@@ -186,6 +191,13 @@ tr:last-child td{border-bottom:0}
   <section class="panel">
     <div class="sec-head"><div><h2>Open locks</h2><div class="sub">Paper positions: one leg on each site. Exactly one leg pays $1 per pair, so the profit is fixed at entry.</div></div><span class="eyebrow" id="locks-n"></span></div>
     <div class="locks" id="locks"></div>
+  </section>
+
+  <section class="panel" id="bundles-panel">
+    <div class="sec-head"><div><h2>One-site bundles</h2><div class="sub">Kalshi only, separate $500 paper bankroll. <b>Partition</b>: buy every bracket of one number (exactly one must win) for under the payout. <b>Ladder</b>: "above 3.0%" priced below "above 3.1%" can't be right; YES on the easier bar + NO on the harder one pays at least $1.</div></div><span class="eyebrow" id="bundle-upd"></span></div>
+    <div class="bkpis" id="bundle-kpis"></div>
+    <div class="board" id="bundle-board" style="margin-top:12px"></div>
+    <div class="locks" id="bundle-locks" style="margin-top:12px"></div>
   </section>
 
   <section class="grid2">
@@ -323,6 +335,30 @@ tr:last-child td{border-bottom:0}
     $('weather').innerHTML='<div class="facts" style="font-size:13px"><span>Realized <b class="'+cls(k.realized)+'">'+money(k.realized)+'</b></span><span>Settled <b>'+(k.settled==null?'–':k.settled)+'</b></span><span>Open <b>'+(k.open==null?'–':k.open)+'</b></span></div>'+
       '<p class="muted" style="font-size:12.5px;margin:10px 0 0;max-width:60ch">Forecast and station-lock trading are off after failing out-of-sample backtests. The bot still streams Kalshi weather prices and station readings; it places no weather trades.</p>';
   }
+  function kindChip(k){ var n={'partition-yes':'Partition · all YES','partition-no':'Partition · all NO','ladder':'Ladder'}[k]||k; return '<span class="chip '+(k==='ladder'?'bl':'bp')+'">'+esc(n)+'</span>'; }
+  function renderBundles(B){
+    if(!B){ $('bundle-kpis').innerHTML=''; $('bundle-board').innerHTML='<div class="empty">The bundle scanner reports after its first pass over about 1,000 Kalshi events (a few minutes).</div>'; $('bundle-locks').innerHTML=''; $('bundle-upd').textContent=''; return; }
+    var lc=B.last_cycle||{}, kinds=B.kinds||{};
+    $('bundle-upd').textContent='Last pass '+ago(Date.now()/1000-(B.updated_epoch||0));
+    var tiles=[['Watching',(B.events||0).toLocaleString()+' events',((kinds.ladder||0)+(kinds['partition-yes']||0)*2).toLocaleString()+' bundle shapes'],
+      ['Under payout now',String(lc.under||0),lc.best?('Best edge '+(lc.best[0]*100).toFixed(1)+'¢'):'Last pass'],
+      ['Locked profit',money(B.locked),(B.open||0)+' open bundle'+(B.open===1?'':'s')],
+      ['Realized',money(B.realized),((B.closed_trades||[]).length)+' settled'],
+      ['Paper cash',money(B.cash,false),'of '+money(B.bank,false)+' · '+money(B.tied,false)+' tied']];
+    $('bundle-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    var top=(B.top||[]).slice(0,12);
+    $('bundle-board').innerHTML= top.length? top.map(function(r){
+      var e=r.edge, k= e>=0.005?'win':(e>-0.02?'near':''), legs=(r.detail||[]).slice(0,4).map(function(d){ var t=String(d[0]).split('-').pop(); return esc(t)+' '+String(d[1]).toUpperCase()+' '+c(d[2]); }).join(' + ')+((r.legs||0)>4?' + '+(r.legs-4)+' more':'');
+      var cost=r.cost/(r.payout||1);
+      return '<div class="row '+k+'"><div class="mk"><div class="ttl">'+esc(r.title)+'</div><div class="meta">'+kindChip(r.kind)+'<span class="q">'+legs+'</span><span>settles '+fmtDate(r.close?new Date(r.close*1000).toISOString():null)+'</span></div></div>'+
+        costBar(cost)+'<div class="gap"><div class="g '+(e>0?'pos':'')+'">'+(e>0?'+':'−')+Math.abs(e*100).toFixed(1)+'¢</div><div class="d">'+(e>0?'per bundle, top of book':'short of payout')+'</div></div></div>';
+    }).join('') : '<div class="empty">No bundle priced near its payout in the last hour.</div>';
+    var op=(B.open_trades||[]);
+    $('bundle-locks').innerHTML= op.length? op.slice().reverse().map(function(t){
+      return '<div class="lock"><div class="top"><div class="ttl">'+esc(t.title)+'<div class="muted" style="font-size:12px;font-weight:400;margin-top:2px">'+esc(t.event)+'</div></div><div class="pr"><div class="v pos">'+money(t.locked_profit)+'</div><div class="s">locked · '+(t.annualized!=null?Math.round(t.annualized*100)+'%/yr':'')+'</div></div></div>'+
+        '<div class="facts">'+kindChip(t.kind)+'<span>Bundles <b>'+Math.round(t.bundles)+'</b></span><span>Legs <b>'+(t.legs||[]).length+'</b></span><span>Cost <b>'+money(t.cost,false)+'</b></span><span>Pays at least <b>'+money(t.bundles*t.payout_per,false)+'</b></span><span>Opened <b>'+fmtTime(t.opened)+'</b></span></div></div>';
+    }).join('') : '';
+  }
   function render(){
     if(!snap) return;
     var A=snap.arb||null, cash=(A&&A.cash)||{}, bank=(A&&A.bank_per_venue)||900;
@@ -337,7 +373,7 @@ tr:last-child td{border-bottom:0}
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
-    renderBoard(A); renderLocks(A); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
+    renderBoard(A); renderLocks(A); renderBundles(A&&A.bundle); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
       return '<div class="check '+p+'"><span class="cd"></span><div><div class="nm">'+esc(x.name)+'</div><div class="dt">'+esc(x.detail)+'</div></div></div>'}).join('') || '<div class="empty">No checks reported.</div>';
