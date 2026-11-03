@@ -193,6 +193,13 @@ tr:last-child td{border-bottom:0}
     <div class="locks" id="locks"></div>
   </section>
 
+  <section class="panel" id="mm-panel">
+    <div class="sec-head"><div><h2>Market making</h2><div class="sub">Separate $500 paper bankroll. Rests bids on Polymarket US (earning the maker rebate) priced so bid + Kalshi hedge + fees stays under $0.995, then hedges on Kalshi when filled. A fill counts only when volume trades at or through our price after everyone ahead of us in line. The least certain of the three tests: real queues and reactions can't be fully simulated.</div></div><span class="eyebrow" id="mm-upd"></span></div>
+    <div class="bkpis" id="mm-kpis"></div>
+    <div class="scroll" id="mm-quotes" style="margin-top:12px"></div>
+    <div class="locks" id="mm-fills" style="margin-top:12px"></div>
+  </section>
+
   <section class="panel" id="bundles-panel">
     <div class="sec-head"><div><h2>One-site bundles</h2><div class="sub">Kalshi only, separate $500 paper bankroll. <b>Partition</b>: buy every bracket of one number (exactly one must win) for under the payout. <b>Ladder</b>: "above 3.0%" priced below "above 3.1%" can't be right; YES on the easier bar + NO on the harder one pays at least $1.</div></div><span class="eyebrow" id="bundle-upd"></span></div>
     <div class="bkpis" id="bundle-kpis"></div>
@@ -359,6 +366,27 @@ tr:last-child td{border-bottom:0}
         '<div class="facts">'+kindChip(t.kind)+'<span>Bundles <b>'+Math.round(t.bundles)+'</b></span><span>Legs <b>'+(t.legs||[]).length+'</b></span><span>Cost <b>'+money(t.cost,false)+'</b></span><span>Pays at least <b>'+money(t.bundles*t.payout_per,false)+'</b></span><span>Opened <b>'+fmtTime(t.opened)+'</b></span></div></div>';
     }).join('') : '';
   }
+  function renderMM(M){
+    if(!M){ $('mm-kpis').innerHTML=''; $('mm-quotes').innerHTML='<div class="empty">The market-making simulator reports after its first pass (about a minute).</div>'; $('mm-fills').innerHTML=''; $('mm-upd').textContent=''; return; }
+    var st=M.stats||{}, op=M.open_trades||[], cl=M.closed_trades||[];
+    var slips=op.concat(cl).map(function(t){return t.hedge_slippage_c}).filter(function(x){return x!=null});
+    var avgSlip=slips.length? slips.reduce(function(a,b){return a+b},0)/slips.length : null;
+    $('mm-upd').textContent='Updated '+ago(Date.now()/1000-(M.updated_epoch||0));
+    var tiles=[['Live paper quotes',String(M.quotes_live||0),'on '+(M.universe||0)+' pairs'],
+      ['Fills',String(M.fills||0),(st.filled_contracts||0).toLocaleString()+' contracts'],
+      ['Locked profit',money(M.locked),(M.open||0)+' hedged position'+(M.open===1?'':'s')],
+      ['Avg hedge slippage',avgSlip==null?'–':(avgSlip>0?'+':'')+avgSlip.toFixed(1)+'¢','Kalshi price moved vs. when we quoted'],
+      ['Paper cash',money(M.cash,false),'of '+money(M.bank,false)+' · realized '+money(M.realized)]];
+    $('mm-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    var q=(M.quotes||[]).slice(0,12);
+    $('mm-quotes').innerHTML= q.length? '<table><thead><tr><th>Resting bid (paper)</th><th>Side</th><th class="n">Bid</th><th class="n">Kalshi hedge</th><th class="n">Ahead in line</th><th class="n">Left</th><th class="n">Age</th></tr></thead><tbody>'+q.map(function(x){
+      return '<tr><td style="font-size:12.5px">'+esc(splitLabel(x.label)[0])+'</td><td>'+esc(String(x.side).toUpperCase())+'</td><td class="n">'+c(x.px)+'</td><td class="n">'+c(x.h_at_quote)+'</td><td class="n">'+Math.round(x.ahead).toLocaleString()+'</td><td class="n">'+Math.round(x.left)+'</td><td class="n" data-ep="'+(x.placed||0)+'"></td></tr>'; }).join('')+'</tbody></table>' : '<div class="empty">No live quotes right now (none profitable, or games about to start).</div>';
+    $('mm-fills').innerHTML= op.length? op.slice().reverse().slice(0,10).map(function(t){
+      return '<div class="lock"><div class="top"><div class="ttl">'+esc(splitLabel(t.label)[0])+'</div><div class="pr"><div class="v '+cls(t.locked_profit)+'">'+money(t.locked_profit)+'</div><div class="s">'+Math.round(t.pairs)+' pairs · '+fmtTime(t.opened)+'</div></div></div>'+
+        '<div class="legs"><div class="leg p"><div class="vn">Polymarket US · maker</div><div class="bt">'+Math.round(t.pairs)+' '+esc(String(t.pm_side).toUpperCase())+' @ '+c(t.pm_px)+'</div><div class="ft">rebate +'+money(t.pm_rebate,false)+'</div></div>'+
+        '<div class="leg k"><div class="vn">Kalshi · hedge</div><div class="bt">'+Math.round(t.pairs)+' '+esc(String(t.k_side).toUpperCase())+' @ '+c(t.k_avg)+'</div><div class="ft">fee '+money(t.k_fee,false)+' · slippage '+(t.hedge_slippage_c>0?'+':'')+t.hedge_slippage_c+'¢</div></div></div></div>';
+    }).join('') : '';
+  }
   function render(){
     if(!snap) return;
     var A=snap.arb||null, cash=(A&&A.cash)||{}, bank=(A&&A.bank_per_venue)||900;
@@ -373,7 +401,7 @@ tr:last-child td{border-bottom:0}
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
-    renderBoard(A); renderLocks(A); renderBundles(A&&A.bundle); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
+    renderBoard(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
       return '<div class="check '+p+'"><span class="cd"></span><div><div class="nm">'+esc(x.name)+'</div><div class="dt">'+esc(x.detail)+'</div></div></div>'}).join('') || '<div class="empty">No checks reported.</div>';
