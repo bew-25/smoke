@@ -181,6 +181,11 @@ tr:last-child td{border-bottom:0}
 
   <section class="panel kpis" id="kpis"></section>
 
+  <section class="panel" id="split-panel">
+    <div class="sec-head"><div><h2>Real money vs paper only</h2><div class="sub"><b>Eligible</b>: market types we'd trade live because both sites' rules match (game winners, spreads, totals; elections with a cap). <b>Paper only</b>: tennis and UFC, where retirement and draw rules differ. Paper keeps trading both so we learn which types actually break.</div></div></div>
+    <div class="scroll" id="split"></div>
+  </section>
+
   <section class="panel">
     <div class="sec-head"><div><h2>Closest to a lock</h2><div class="sub">Cheapest way to own both outcomes of the same question across the two sites, fees included, from the last scan. Under $1.00 means a guaranteed profit if both orders fill.</div></div>
       <span class="eyebrow" id="board-n"></span></div>
@@ -302,7 +307,7 @@ tr:last-child td{border-bottom:0}
         '<div class="pr"><div class="v pos">'+money(t.locked_profit)+'</div><div class="s">locked · '+(ret==null?'–':(ret*100).toFixed(2)+'%')+' on '+money(t.total_cost,false)+'</div></div></div>'+
         '<div class="legs"><div class="leg k"><div class="vn">Kalshi</div><div class="bt">'+n.toLocaleString()+' '+esc(String(t.k_side).toUpperCase())+' @ '+c(kPx)+'</div><div class="ft">'+money(t.k_cost,false)+' + '+money(t.k_fee,false)+' fee</div></div>'+
         '<div class="leg p"><div class="vn">Polymarket US</div><div class="bt">'+n.toLocaleString()+' '+esc(String(t.pm_side).toUpperCase())+' @ '+c(pmPx)+'</div><div class="ft">'+money(t.pm_cost,false)+' + '+money(t.pm_fee,false)+' fee</div></div></div>'+
-        '<div class="facts">'+famChip(t.family)+'<span>Opened <b>'+fmtTime(t.opened)+'</b></span><span>Pays <b>'+money(n,false)+'</b> whichever way it goes</span><span>Kalshi closes by <b>'+fmtDate(t.k_close)+'</b></span></div>'+
+        '<div class="facts">'+famChip(t.family)+(t.eligible===false?'<span class="chip">paper only</span>':'<span class="chip pos" style="color:var(--pos)">real-money eligible</span>')+'<span>Opened <b>'+fmtTime(t.opened)+'</b></span><span>Pays <b>'+money(n,false)+'</b> whichever way it goes</span><span>Kalshi closes by <b>'+fmtDate(t.k_close)+'</b></span></div>'+
         (t.settle_note?'<div class="note"><b>Rules check:</b> '+esc(t.settle_note)+'</div>':'')+'</div>';
     }).join('');
   }
@@ -387,6 +392,13 @@ tr:last-child td{border-bottom:0}
         '<div class="leg k"><div class="vn">Kalshi · hedge</div><div class="bt">'+Math.round(t.pairs)+' '+esc(String(t.k_side).toUpperCase())+' @ '+c(t.k_avg)+'</div><div class="ft">fee '+money(t.k_fee,false)+' · slippage '+(t.hedge_slippage_c>0?'+':'')+t.hedge_slippage_c+'¢</div></div></div></div>';
     }).join('') : '';
   }
+  function renderSplit(A){
+    var S=A&&A.split; if(!S){ $('split').innerHTML='<div class="empty">Appears with the next snapshot.</div>'; return; }
+    function row(name,g,strong){ return '<tr'+(strong?' style="font-weight:600"':'')+'><td>'+name+'</td><td class="n">'+g.settled+'</td><td class="n">'+(g.settled?Math.round(100*g.wins/g.settled)+'%':'–')+'</td><td class="n '+cls(g.realized)+'">'+money(g.realized)+'</td><td class="n '+(g.mismatches?'neg':'')+'">'+g.mismatches+'</td>'+(g.open!=null?'<td class="n">'+g.open+'</td><td class="n '+cls(g.locked)+'">'+money(g.locked)+'</td>':'<td></td><td></td>')+'</tr>'; }
+    var fam=S.by_family||{}, fr=Object.keys(fam).map(function(f){ return row('<span style="padding-left:14px" class="muted">'+esc(famName(f))+'</span>',fam[f],false); }).join('');
+    $('split').innerHTML='<table><thead><tr><th>Group</th><th class="n">Settled</th><th class="n">Won</th><th class="n">Realized</th><th class="n">Mismatches</th><th class="n">Open</th><th class="n">Locked</th></tr></thead><tbody>'+
+      row('Real-money eligible',S.eligible,true)+row('Paper only',S.excluded,true)+fr+'</tbody></table>';
+  }
   function render(){
     if(!snap) return;
     var A=snap.arb||null, cash=(A&&A.cash)||{}, bank=(A&&A.bank_per_venue)||900;
@@ -401,7 +413,7 @@ tr:last-child td{border-bottom:0}
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
-    renderBoard(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
+    renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
       return '<div class="check '+p+'"><span class="cd"></span><div><div class="nm">'+esc(x.name)+'</div><div class="dt">'+esc(x.detail)+'</div></div></div>'}).join('') || '<div class="empty">No checks reported.</div>';
