@@ -409,7 +409,7 @@ tr:last-child td{border-bottom:0}
       ['Under $1 now', A? String(lc.gap_pairs||0) : '–', (lc.gap_pairs?'pos':''), best? 'Best $'+best.toFixed(3)+' per pair' : 'Last scan'],
       ['Locked profit', A? money(A.locked) : '–', cls(A&&A.locked), (A?A.open:0)+' open lock'+(A&&A.open===1?'':'s')],
       ['Capital tied up', A? money(A.tied,false) : '–', '', 'Until each pair settles'],
-      ['Realized', A? money(A.realized) : '–', cls(A&&A.realized), ((A&&A.closed_trades)||[]).length+' settled'],
+      ['Realized', A? money(A.realized) : '–', cls(A&&A.realized), ((A&&A.settled_count)!=null?A.settled_count:((A&&A.closed_trades)||[]).length)+' settled'],
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
