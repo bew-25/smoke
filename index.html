@@ -184,17 +184,7 @@ tr:last-child td{border-bottom:0}
     <a href="#live" role="tab" data-tab="live">Live money</a>
   </nav>
 
-  <section id="status" class="panel hero" aria-live="polite">
-    <div>
-      <div class="st-line"><span class="dot" aria-hidden="true"></span><div class="st-title" id="st-title">Loading latest data…</div></div>
-      <div class="st-sub" id="st-sub"></div>
-    </div>
-    <div class="clock">
-      <div class="eyebrow">Last scan</div>
-      <div class="t" id="st-scan">--:--:--</div>
-      <div class="a" id="st-scan-age"></div>
-    </div>
-  </section>
+
 
   <!-- ============ TAB 1: HOME ============ -->
   <div class="tabpane" id="tab-home">
@@ -232,6 +222,17 @@ tr:last-child td{border-bottom:0}
 
   <!-- ============ TAB 2: PAPER TRADING ============ -->
   <div class="tabpane" id="tab-paper">
+  <section id="status" class="panel hero" aria-live="polite">
+    <div>
+      <div class="st-line"><span class="dot" aria-hidden="true"></span><div class="st-title" id="st-title">Loading latest data…</div></div>
+      <div class="st-sub" id="st-sub"></div>
+    </div>
+    <div class="clock">
+      <div class="eyebrow">Last scan</div>
+      <div class="t" id="st-scan">--:--:--</div>
+      <div class="a" id="st-scan-age"></div>
+    </div>
+  </section>
     <section class="panel kpis" id="kpis"></section>
 
     <section class="panel">
@@ -307,6 +308,17 @@ tr:last-child td{border-bottom:0}
 
   <!-- ============ TAB 4: LIVE MONEY ============ -->
   <div class="tabpane" id="tab-live">
+    <section id="live-status" class="panel hero late" aria-live="polite">
+      <div>
+        <div class="st-line"><span class="dot" aria-hidden="true"></span><div class="st-title" id="live-title">Not live · no real money traded</div></div>
+        <div class="st-sub" id="live-sub"></div>
+      </div>
+      <div class="clock">
+        <div class="eyebrow">Real P&amp;L</div>
+        <div class="t" id="live-pnl">$0.00</div>
+        <div class="a" id="live-count">0 real trades</div>
+      </div>
+    </section>
     <section class="panel">
       <div class="sec-head"><div><h2>Live money</h2><div class="sub">No real orders have been placed. Live trading starts only when every gate below is met.</div></div><span class="pill warn">Not live</span></div>
       <div class="checks" id="gates"></div>
@@ -579,6 +591,9 @@ tr:last-child td{border-bottom:0}
       [bt.totals!=null && !bt_m, 'Matching backtest clean (no mismatches with current rules)', bt.totals? ((bt_m||0)+' mismatches across '+(bt.pairs||0).toLocaleString()+' historical pairs') : 'running'],
       [false,'Live order placement + leg-risk handling built and tested','Built only after the gates above pass'],
       [false,'Your go-ahead','Nothing trades for real without it']];
+    var passed=gates.filter(function(g){return g[0]}).length, next=gates.filter(function(g){return !g[0]})[0];
+    $('live-title').textContent='Not live · '+passed+' of '+gates.length+' gates passed';
+    $('live-sub').textContent='No real orders have been placed. '+(next?('Next gate: '+next[1]+'.'):'All gates passed; waiting for your go-ahead.');
     $('gates').innerHTML=gates.map(function(g){ return '<div class="check '+(g[0]?'ok':'warn')+'"><span class="cd"></span><div><div class="nm">'+(g[0]?'✓ ':'')+esc(g[1])+'</div><div class="dt">'+esc(g[2])+'</div></div></div>'; }).join('');
   }
   function render(){
