@@ -250,7 +250,7 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section class="panel" id="split-panel">
-      <div class="sec-head"><div><h2>Real money vs paper only</h2><div class="sub"><b>Eligible</b>: market types we'd trade live because both sites' rules match (game winners, spreads, totals; elections with a cap). <b>Paper only</b>: tennis and UFC, where retirement and draw rules differ. Paper keeps trading both so we learn which types actually break.</div></div></div>
+      <div class="sec-head"><div><h2>Real money vs paper only</h2><div class="sub"><b>Eligible</b>: market types we'd trade live because the backtest shows the matcher is wrong less than 1 in 230 times: NFL, NBA, NHL, college hoops, tennis, UFC, soccer, elections (capped). <b>Paper only</b>: MLB (doubleheaders) and college football (game winners, spreads, totals), the two types that failed the one-year matching backtest. Paper keeps trading them so we learn whether fixes work.</div></div></div>
       <div class="scroll" id="split"></div>
     </section>
 
@@ -359,7 +359,7 @@ tr:last-child td{border-bottom:0}
       <div class="sec-head"><div><h2>Planned pilot</h2></div></div>
       <div class="scroll"><table><tbody>
         <tr><td>Capital</td><td>$500 real (about $350 Polymarket US / $150 Kalshi)</td></tr>
-        <tr><td>Market types</td><td>Game winners, spreads, totals; elections with a cap. Not tennis or UFC</td></tr>
+        <tr><td>Market types</td><td>NFL, NBA, NHL, college hoops, tennis, UFC, soccer; elections with a cap. Not MLB or college football until their matching is fixed</td></tr>
         <tr><td>Per-trade and per-game caps</td><td>$50 per trade, $100 per game to start; raised as clean settlements build</td></tr>
         <tr><td>Order handling</td><td>Thinner leg first, fill-or-cancel limit orders, automatic unwind if the second leg misses; kill switch</td></tr>
         <tr><td>Success measure</td><td>Real profit captured vs paper on the same gaps; zero mismatches</td></tr>
