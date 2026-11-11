@@ -157,6 +157,10 @@ tr:last-child td{border-bottom:0}
 .tabs a:hover{color:var(--ink)}
 .tabs a[aria-selected="true"]{color:var(--ink);background:var(--surface);border-color:var(--line);box-shadow:0 -2px 0 var(--heat) inset}
 .tabpane{display:grid;gap:16px}
+.subtabs{display:flex;gap:8px;flex-wrap:wrap}
+.subtabs a{font:600 12.5px var(--sans);color:var(--muted);text-decoration:none;padding:7px 12px;border-radius:999px;border:1px solid var(--line);background:var(--surface)}
+.subtabs a[aria-selected="true"]{color:var(--ink);border-color:var(--heat);background:var(--heat-bg)}
+.subpane{display:grid;gap:16px} .subpane[hidden]{display:none!important}
 .tabpane[hidden]{display:none!important}
 .steps{margin:0;padding-left:20px;display:grid;gap:10px;max-width:80ch}
 .steps li{font-size:13.5px;line-height:1.55}
@@ -233,6 +237,11 @@ tr:last-child td{border-bottom:0}
       <div class="a" id="st-scan-age"></div>
     </div>
   </section>
+    <nav class="subtabs" aria-label="Paper trading rounds">
+      <a href="#paper" data-sub="r2">Round 2 · live <span class="muted" id="r2-since"></span></a>
+      <a href="#round1" data-sub="r1">Round 1 · archive (Nov 2–10)</a>
+    </nav>
+    <div id="paper-r2" class="subpane">
     <section class="panel kpis" id="kpis"></section>
 
     <section class="panel">
@@ -265,6 +274,22 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Gap log</h2><span class="eyebrow">Latest 40 sightings</span></div><div class="scroll" id="gaplog"></div></section>
+    </div>
+    <div id="paper-r1" class="subpane" hidden>
+      <section class="panel">
+        <div class="sec-head"><div><h2>Round 1 · archive</h2><div class="sub">Nov 2–10, 2026. $1,800 paper bankroll. Ended with the reset on Nov 10; the 7 locks still open then are frozen here and don't count toward round 2.</div></div></div>
+        <div class="bkpis" id="r1-kpis"></div>
+      </section>
+      <section class="panel">
+        <div class="sec-head"><div><h2>Realized profit over time</h2><div class="sub">Red dots: mismatches (two different events paired).</div></div><span class="eyebrow" id="r1-pnl-n"></span></div>
+        <div id="r1-chart"></div>
+      </section>
+      <section class="grid2">
+        <div class="panel"><div class="sec-head"><div><h2>Results by group</h2></div></div><div class="scroll" id="r1-split"></div></div>
+        <div class="panel"><div class="sec-head"><div><h2>What went wrong and what changed</h2></div></div><ul class="steps" id="r1-lessons"></ul></div>
+      </section>
+      <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>All settled trades</h2><span class="eyebrow">Newest first</span></div><div class="scroll" id="r1-closed"></div></section>
+    </div>
   </div>
 
   <!-- ============ TAB 3: TESTS & DATA ============ -->
@@ -287,7 +312,7 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section class="panel" id="mm-panel">
-      <div class="sec-head"><div><h2>Market making</h2><div class="sub">Separate $500 paper bankroll. Rests bids on Polymarket US (earning the maker rebate) priced so bid + Kalshi hedge + fees stays under $0.995, then hedges on Kalshi when filled. The least certain of the tests: real queues and reactions can't be fully simulated.</div></div><span class="eyebrow" id="mm-upd"></span></div>
+      <div class="sec-head"><div><h2>Market making <span class="pill bad" style="vertical-align:3px">Stopped Nov 10</span></h2><div class="sub"><b>Result: net −$5.68 on 118 fills.</b> The Kalshi hedge cost ~1¢ more on average than when we bid, because prices tend to move against us right after a fill. That ate the margin, so the test was switched off; the record is kept below. Separate $500 paper bankroll. Rests bids on Polymarket US (earning the maker rebate) priced so bid + Kalshi hedge + fees stays under $0.995, then hedges on Kalshi when filled. The least certain of the tests: real queues and reactions can't be fully simulated.</div></div><span class="eyebrow" id="mm-upd"></span></div>
       <div class="bkpis" id="mm-kpis"></div>
       <div class="scroll" id="mm-quotes" style="margin-top:12px"></div>
       <div class="locks" id="mm-fills" style="margin-top:12px"></div>
@@ -513,9 +538,12 @@ tr:last-child td{border-bottom:0}
   // ---------- tabs ----------
   var TABS=['home','paper','tests','live'];
   function showTab(){
-    var t=(location.hash||'').replace('#',''); if(TABS.indexOf(t)<0) t='home';
+    var h=(location.hash||'').replace('#',''), sub=(h==='round1')?'r1':'r2', t=(h==='round1')?'paper':h; if(TABS.indexOf(t)<0) t='home';
     TABS.forEach(function(x){ var el=$('tab-'+x); if(el) el.hidden=(x!==t); });
     document.querySelectorAll('.tabs a').forEach(function(a){ a.setAttribute('aria-selected', String(a.dataset.tab===t)); });
+    var r1=$('paper-r1'), r2=$('paper-r2'); if(r1&&r2){ r1.hidden=(sub!=='r1'); r2.hidden=(sub!=='r2'); }
+    var st=$('status'); if(st) st.hidden=(sub==='r1');
+    document.querySelectorAll('.subtabs a').forEach(function(a){ a.setAttribute('aria-selected', String(a.dataset.sub===sub)); });
   }
   window.addEventListener('hashchange', showTab); showTab();
 
@@ -524,14 +552,15 @@ tr:last-child td{border-bottom:0}
     var agree=st.agree||0, mism=st.mismatch||0;
     var tiles=[['Pairs watched',A?(A.pairs||0).toLocaleString():'–','same question on both sites'],
       ['Clean locks paid as promised',(function(){ var c=0,n=0; ((A&&A.pnl_series)||[]).forEach(function(r){ if(!r[4]){ n++; if(r[2]>=0) c++; } }); return n? c+' of '+n : '–'; })(),'every correctly matched lock'],
-      ['Realized (paper)',A?money(A.realized):'–','including the two mismatches'],
+      ['Realized · round 2',A?money(A.realized):'–','paper, since the Nov 10 reset (round 1: '+((A&&A.round1)?money(A.round1.realized):'–')+')'],
       ['Matching audit',(agree+mism)?(mism+' bad of '+(agree+mism).toLocaleString()):'collecting','pairs checked after settlement'],
       ['Real money','$0','not live yet']];
     $('home-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
   }
-  function renderPnl(A){
-    var pts=(A&&A.pnl_series)||[], box=$('pnlchart');
-    $('pnl-n').textContent=pts.length? pts.length+' settlements' : '';
+  function renderPnl(A){ drawPnl((A&&A.pnl_series)||[], 'pnlchart', 'pnl-n'); }
+  function drawPnl(pts, boxId, nId){
+    var box=$(boxId);
+    $(nId).textContent=pts.length? pts.length+' settlements' : '';
     if(!pts.length){ box.innerHTML='<div class="empty">The chart starts with the first settlement.</div>'; return; }
     var W=720,H=260,L=64,R=18,T=16,B=30, ys=[0].concat(pts.map(function(p){return p[1]}));
     var lo=Math.min.apply(null,ys), hi=Math.max.apply(null,ys); if(hi-lo<10){hi+=5;lo-=5}
@@ -596,6 +625,20 @@ tr:last-child td{border-bottom:0}
     $('live-sub').textContent='No real orders have been placed. '+(next?('Next gate: '+next[1]+'.'):'All gates passed; waiting for your go-ahead.');
     $('gates').innerHTML=gates.map(function(g){ return '<div class="check '+(g[0]?'ok':'warn')+'"><span class="cd"></span><div><div class="nm">'+(g[0]?'✓ ':'')+esc(g[1])+'</div><div class="dt">'+esc(g[2])+'</div></div></div>'; }).join('');
   }
+  function renderRound1(A){
+    var R1=A&&A.round1; if(!R1){ $('r1-kpis').innerHTML='<div class="empty">Archive not available.</div>'; return; }
+    var c=R1.clean||{}, m=R1.mismatched||{};
+    var tiles=[['Final realized',money(R1.realized),R1.settled+' settled'],['Correctly matched locks',c.wins+' of '+c.settled+' won',money(c.realized)],
+      ['Mismatched positions',String(m.settled||0),money(m.realized)+' (2 events)'],['Voided for bugs',String(R1.voided||0),'refunded'],['Frozen at reset',String(R1.unsettled_at_end||0)+' open',money(R1.unsettled_locked)+' locked']];
+    $('r1-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    drawPnl(R1.pnl_series||[], 'r1-chart', 'r1-pnl-n');
+    function row(n,g){ return '<tr><td>'+n+'</td><td class="n">'+g.settled+'</td><td class="n">'+(g.settled?Math.round(100*g.wins/g.settled)+'%':'–')+'</td><td class="n '+cls(g.realized)+'">'+money(g.realized)+'</td><td class="n '+(g.mismatches?'neg':'')+'">'+g.mismatches+'</td></tr>'; }
+    var fam=R1.by_family||{};
+    $('r1-split').innerHTML='<table><thead><tr><th>Group</th><th class="n">Settled</th><th class="n">Won</th><th class="n">Realized</th><th class="n">Mismatch</th></tr></thead><tbody>'+row('<b>Real-money eligible</b>',R1.eligible)+row('<b>Paper only</b>',R1.excluded)+Object.keys(fam).map(function(f){return row('<span class="muted" style="padding-left:12px">'+esc(famName(f))+'</span>',fam[f]);}).join('')+'</tbody></table>';
+    $('r1-lessons').innerHTML=(R1.lessons||[]).map(function(x){return '<li>'+esc(x)+'</li>';}).join('');
+    var ct=(R1.closed_trades||[]);
+    $('r1-closed').innerHTML='<table><thead><tr><th>Settled</th><th>Market</th><th class="n">Pairs</th><th class="n">Cost</th><th class="n">P&amp;L</th></tr></thead><tbody>'+ct.map(function(t){ return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+fmtTime(t.closed)+'</td><td style="font-size:12.5px">'+esc(splitLabel(t.label)[0])+(t.mismatch?' <span class="pill bad">mismatch</span>':'')+'</td><td class="n">'+Math.round(t.pairs||0)+'</td><td class="n">'+money(t.total_cost,false)+'</td><td class="n '+cls(t.pnl)+'">'+money(t.pnl)+'</td></tr>'; }).join('')+'</tbody></table>';
+  }
   function render(){
     if(!snap) return;
     var A=snap.arb||null, cash=(A&&A.cash)||{}, bank=(A&&A.bank_per_venue)||900;
@@ -610,7 +653,8 @@ tr:last-child td{border-bottom:0}
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
-    renderHome(A); renderPnl(A); renderAudit(A); renderBacktest(A); renderErrors(A); renderGates(A);
+    renderHome(A); renderPnl(A); renderRound1(A);
+    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderBacktest(A); renderErrors(A); renderGates(A);
     renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
