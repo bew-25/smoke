@@ -165,6 +165,10 @@ tr:last-child td{border-bottom:0}
 .steps{margin:0;padding-left:20px;display:grid;gap:10px;max-width:80ch}
 .steps li{font-size:13.5px;line-height:1.55}
 .note-p{font-size:13.5px;line-height:1.55;margin:0;max-width:70ch}
+.diag{margin:0 0 18px}
+.diag .dscroll{overflow-x:auto}
+.diag svg{display:block;width:100%;min-width:640px;max-width:860px;height:auto;color:var(--ink)}
+.diag figcaption{font-size:12.5px;color:var(--muted);margin-top:8px;max-width:80ch}
 .chart .dot-bad{fill:var(--neg)} .chart .dot-ok{fill:var(--pos)}
 .bkpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .bk{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
@@ -199,6 +203,62 @@ tr:last-child td{border-bottom:0}
 
     <section class="panel">
       <div class="sec-head"><div><h2>How it works</h2></div></div>
+      <figure class="diag">
+        <div class="dscroll">
+        <svg viewBox="0 0 780 205" role="img" aria-label="The same game is priced 5 cents apart on Kalshi and Polymarket. Buying YES on Kalshi at 38 cents and NO on Polymarket at 57 cents costs 98.4 cents with fees; exactly one pays 1 dollar, so 1.6 cents per pair is locked in.">
+          <defs><marker id="darr" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="currentColor"/></marker></defs>
+          <g font-family="Instrument Sans, system-ui, sans-serif" font-size="12" fill="currentColor">
+            <text x="20" y="24" font-weight="700" font-size="13">1 · Prices drift apart</text>
+            <text x="310" y="24" font-weight="700" font-size="13">2 · Buy the cheap side of each</text>
+            <text x="575" y="24" font-weight="700" font-size="13">3 · One side always pays</text>
+
+            <text x="20" y="74" font-weight="600" style="fill:var(--ka)">Kalshi</text>
+            <line x1="90" y1="70" x2="250" y2="70" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+            <circle cx="154" cy="70" r="6" style="fill:var(--ka)"/>
+            <text x="154" y="57" text-anchor="middle">YES 38¢</text>
+            <text x="20" y="124" font-weight="600" style="fill:var(--pm)">Polymarket</text>
+            <line x1="90" y1="120" x2="250" y2="120" stroke="currentColor" stroke-opacity=".25" stroke-width="2"/>
+            <circle cx="194" cy="120" r="6" style="fill:var(--pm)"/>
+            <text x="194" y="143" text-anchor="middle">YES 43¢ (NO 57¢)</text>
+            <line x1="154" y1="80" x2="154" y2="112" stroke="currentColor" stroke-dasharray="3 3" stroke-opacity=".6"/>
+            <line x1="194" y1="78" x2="194" y2="110" stroke="currentColor" stroke-dasharray="3 3" stroke-opacity=".6"/>
+            <text x="174" y="99" text-anchor="middle" font-weight="700" style="fill:var(--heat)">5¢ gap</text>
+            <text x="20" y="178" style="fill:var(--muted)">Same game, separate traders;</text>
+            <text x="20" y="194" style="fill:var(--muted)">one site reacts to news later</text>
+
+            <line x1="262" y1="95" x2="298" y2="95" stroke="currentColor" stroke-width="1.6" marker-end="url(#darr)"/>
+            <text x="280" y="86" text-anchor="middle" font-size="11" style="fill:var(--muted)">gap &gt; fees</text>
+
+            <rect x="310" y="70" width="76" height="26" rx="3" style="fill:var(--ka)"/>
+            <text x="348" y="87" text-anchor="middle" font-weight="600" style="fill:var(--surface)">YES 38¢</text>
+            <rect x="386" y="70" width="114" height="26" style="fill:var(--pm)"/>
+            <text x="443" y="87" text-anchor="middle" font-weight="600" style="fill:var(--surface)">NO 57¢</text>
+            <rect x="500" y="70" width="6.8" height="26" style="fill:var(--warn)"/>
+            <line x1="510" y1="58" x2="510" y2="106" stroke="currentColor" stroke-width="2" stroke-dasharray="4 3"/>
+            <text x="510" y="52" text-anchor="middle" font-weight="700">$1.00</text>
+            <text x="348" y="114" text-anchor="middle" font-size="11" style="fill:var(--ka)">on Kalshi</text>
+            <text x="443" y="114" text-anchor="middle" font-size="11" style="fill:var(--pm)">on Polymarket</text>
+            <line x1="503" y1="98" x2="503" y2="122" stroke="currentColor" stroke-opacity=".6"/>
+            <text x="508" y="134" text-anchor="end" font-size="11" style="fill:var(--muted)">fees 3.4¢</text>
+            <text x="310" y="170">Cost: <tspan font-weight="700">98.4¢</tspan> per pair</text>
+            <text x="310" y="190" font-weight="700" style="fill:var(--pos)">+1.6¢ locked per pair</text>
+
+            <line x1="527" y1="95" x2="563" y2="95" stroke="currentColor" stroke-width="1.6" marker-end="url(#darr)"/>
+            <text x="545" y="86" text-anchor="middle" font-size="11" style="fill:var(--muted)">game ends</text>
+
+            <rect x="575" y="44" width="190" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity=".25"/>
+            <text x="587" y="62" font-weight="600">If the team wins</text>
+            <text x="587" y="79" style="fill:var(--ka)">Kalshi YES pays $1.00</text>
+            <rect x="575" y="100" width="190" height="44" rx="8" fill="none" stroke="currentColor" stroke-opacity=".25"/>
+            <text x="587" y="118" font-weight="600">If the team loses</text>
+            <text x="587" y="135" style="fill:var(--pm)">Polymarket NO pays $1.00</text>
+            <text x="575" y="170" font-weight="700">Either way: $1.00 back</text>
+            <text x="575" y="190" style="fill:var(--muted)">for 98.4¢ paid → +1.6¢</text>
+          </g>
+        </svg>
+        </div>
+        <figcaption>A lock. Each site has its own traders and order books, so the same game's price can drift apart, usually because one site reacts to news a little later. When the cheap YES on one site plus the cheap NO on the other costs less than $1 after both fees, Smoke buys both. Exactly one of them pays $1, so the profit is fixed before the game starts. It doesn't matter who wins; it only matters that both markets are the same game.</figcaption>
+      </figure>
       <ol class="steps">
         <li><b>Match.</b> Every 30 minutes (new markets are listed slowly, so this is plenty) it pulls every open market on both sites (~70,000 Polymarket, ~160,000 Kalshi) and pairs only identical questions, using strict rules for each market type: same league (a whitelist per soccer league), same men's/women's competition, same game time, same teams with full names, same line (e.g. over 160.5), full game only. About 5,000 pairs.</li>
         <li><b>Watch prices live.</b> Kalshi prices stream in real time for every paired market. Polymarket is re-checked within seconds of any Kalshi move, the 100 pairs closest to a lock every ~20 seconds, and everything else in a ~2-minute sweep. (Polymarket's own live stream needs an account API key; once added, both sides stream.)</li>
