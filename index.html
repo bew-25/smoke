@@ -301,6 +301,13 @@ tr:last-child td{border-bottom:0}
     </section>
 
     <section class="panel">
+      <div class="sec-head"><div><h2>Shadow earnings: every lock the matched pairs offered</h2><div class="sub">Every time any matched pair shows a lock, this records the moment, how many pairs both order books could fill, the dollars that would absorb, the profit locked, and the paper cash free at that moment. Sightings of the same gap within 10 minutes count as one opportunity. Each is then booked against the <b>real</b> settlement on both sites. Two views: <b>unlimited cash</b> (every opportunity fully taken) and the <b>$1,800 bankroll</b> ($150 per pair, $200 per game, cash returns when an event settles). It assumes every fill at the prices seen, so it's a ceiling.</div></div><span class="eyebrow" id="shadow-upd"></span></div>
+      <div class="bkpis" id="shadow-kpis"></div>
+      <div class="scroll" id="shadow-split" style="margin-top:12px"></div>
+      <div class="scroll" id="shadow-table" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel">
       <div class="sec-head"><div><h2>Matching backtest (since Polymarket US launched, Nov 2025)</h2><div class="sub">The same matcher code run over every settled market on both sites, checking each pair's two results agree. Polymarket US publishes no price or order-book history, so a profit backtest isn't possible; this measures matching accuracy, the thing that decides whether the strategy is safe.</div></div><span class="eyebrow" id="bt-upd"></span></div>
       <div class="bkpis" id="bt-kpis"></div>
       <div class="scroll" id="bt-table" style="margin-top:12px"></div>
@@ -592,6 +599,25 @@ tr:last-child td{border-bottom:0}
     $('audit-table').innerHTML='<table><thead><tr><th>Market type</th><th class="n">Checked</th><th class="n">Agreed</th><th class="n">Mismatch</th><th class="n">Both fair-priced</th><th class="n">Waiting</th></tr></thead><tbody>'+famRows(au.by_family)+'</tbody></table>'+
       (mm.length? '<h3 style="margin:14px 0 6px;font-size:15px">Mismatches</h3><table><tbody>'+mm.map(function(r){ return '<tr><td style="font-size:12.5px">'+esc(r.label)+'</td><td class="n">PM '+r.pm_yes+' / K '+r.k_yes+'</td></tr>'; }).join('')+'</tbody></table>' : '');
   }
+  function renderShadow(A){
+    var sh=A&&A.audit&&A.audit.shadow;
+    if(!sh||!sh.opportunities){ $('shadow-kpis').innerHTML=''; $('shadow-split').innerHTML=''; $('shadow-table').innerHTML='<div class="empty">'+(sh&&sh.error?('Error: '+esc(sh.error)):'No locks offered yet since recording started (7:05 PM Nov 10). Each one appears here the moment a matched pair goes under $0.995 with fees.')+'</div>'; $('shadow-upd').textContent=''; return; }
+    var C=sh.checked||{}, U=C.unlimited||{}, B=C.bankroll||{};
+    $('shadow-upd').textContent='Since '+fmtTime(sh.since);
+    var tiles=[['Opportunities',String(sh.opportunities),sh.sightings.toLocaleString()+' sightings · '+sh.passed_checks+' passed safety checks'],
+      ['Money the books could absorb',money(U.capital,false),'opportunities passing checks, fully filled'],
+      ['Profit: unlimited cash',money(U.profit),money(U.realized)+' settled · '+money(U.locked)+' still locked'],
+      ['Profit: $1,800 bankroll',money(B.profit),money(B.deployed,false)+' deployed · peak '+money(B.peak_capital_used,false)+' in use at once'],
+      ['Per day ($1,800)',sh.days>=1?money(sh.per_day_checked):'–',sh.days>=1?('over '+sh.days+' days'):'shown after 1 full day']];
+    $('shadow-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    function row(n,v){ var u=(v||{}).unlimited||{}, b=(v||{}).bankroll||{}; return '<tr><td>'+n+'</td><td class="n">'+(u.n||0)+'</td><td class="n">'+money(u.capital,false)+'</td><td class="n '+cls(u.profit)+'">'+money(u.profit)+'</td><td class="n '+(u.mismatch_loss?'neg':'')+'">'+money(u.mismatch_loss||0)+'</td><td class="n">'+(b.taken||0)+'</td><td class="n">'+(b.skipped_cash||0)+'</td><td class="n '+cls(b.profit)+'">'+money(b.profit)+'</td></tr>'; }
+    $('shadow-split').innerHTML='<table><thead><tr><th>Rule set</th><th class="n">Opps</th><th class="n">Books could absorb</th><th class="n">Profit (unlimited)</th><th class="n">Lost to mismatches</th><th class="n">Taken ($1,800)</th><th class="n">Skipped: no cash</th><th class="n">Profit ($1,800)</th></tr></thead><tbody>'+
+      row('<b>With safety checks</b> (what round 2 trades)',sh.checked)+row('Every opportunity, no checks',sh.all)+'</tbody></table>';
+    var rc=sh.recent||[];
+    $('shadow-table').innerHTML='<table><thead><tr><th>Detected</th><th>Market</th><th class="n">Cost/pair</th><th class="n">Pairs on books</th><th class="n">$ books absorb</th><th class="n">Profit available</th><th class="n">Our cash then</th><th class="n">Taken</th><th>Checks</th><th>Outcome</th></tr></thead><tbody>'+rc.map(function(r){
+      var oc=r.state==='pending'?'<span class="muted">locked, not settled</span>':(r.state==='agree'?'<span class="pos">paid '+money(r.pnl)+'</span>':'<span class="neg">'+esc(r.state)+' '+money(r.pnl)+'</span>');
+      return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+fmtTime(r.ts)+'<div class="muted" style="font-size:11px">lasted '+r.lasted_min+' min</div></td><td style="font-size:12.5px">'+esc(splitLabel(r.label)[0])+'<div class="muted" style="font-size:11.5px">'+esc(r.dir)+'</div></td><td class="n">$'+Number(r.unit).toFixed(3)+'</td><td class="n">'+r.pairs.toLocaleString()+'</td><td class="n">'+money(r.depth_usd,false)+'</td><td class="n pos">'+money(r.profit)+'</td><td class="n">'+(r.cash_at_detect==null?'–':money(r.cash_at_detect,false))+'</td><td class="n">'+(r.taken==null?'–':money(r.taken,false))+'</td><td>'+(r.passed_checks?'<span class="pill ok">passed</span>':'<span class="pill warn">'+esc(r.blocked||'blocked')+'</span>')+'</td><td style="font-size:12px">'+oc+'</td></tr>'; }).join('')+'</tbody></table>';
+  }
   function renderBacktest(A){
     var bt=A&&A.backtest, pr=A&&A.backtest_progress;
     if(!bt){ $('bt-kpis').innerHTML=''; $('bt-table').innerHTML='<div class="empty">Running: '+esc(pr||'starting')+'</div>'; $('bt-upd').textContent=''; return; }
@@ -654,7 +680,7 @@ tr:last-child td{border-bottom:0}
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
     renderHome(A); renderPnl(A); renderRound1(A);
-    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderBacktest(A); renderErrors(A); renderGates(A);
+    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderShadow(A); renderBacktest(A); renderErrors(A); renderGates(A);
     renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
