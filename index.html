@@ -305,7 +305,10 @@ tr:last-child td{border-bottom:0}
       <div class="bkpis" id="shadow-kpis"></div>
       <div class="scroll" id="shadow-split" style="margin-top:12px"></div>
       <div class="scroll" id="shadow-table" style="margin-top:12px"></div>
-    </section>
+      <h3 style="margin:22px 0 4px;font-size:17px">Backfill: the whole scanner history (from Nov 2, 8 PM)</h3>
+      <div class="sub muted" style="font-size:12.5px;max-width:80ch">The same ledger replayed over every lock the scanner logged since it started. Nothing earlier exists: before Nov 2 nobody recorded both sites' prices, and Polymarket publishes no history. <b>Current rules</b> = only pairs today's matcher would make (league whitelist, men's/women's check, full names). <b>Round 1 rules</b> = every pair the scanner had back then, including the wrong matches. Before Nov 10, profit per sighting is estimated from the best price × the pairs fillable up to $150, so it's approximate.</div>
+      <div class="bkpis" id="bf-kpis" style="margin-top:12px"></div>
+      <div class="scroll" id="bf-daily" style="margin-top:12px"></div>
 
     <section class="panel">
       <div class="sec-head"><div><h2>Matching backtest (since Polymarket US launched, Nov 2025)</h2><div class="sub">The same matcher code run over every settled market on both sites, checking each pair's two results agree. Polymarket US publishes no price or order-book history, so a profit backtest isn't possible; this measures matching accuracy, the thing that decides whether the strategy is safe.</div></div><span class="eyebrow" id="bt-upd"></span></div>
@@ -618,6 +621,25 @@ tr:last-child td{border-bottom:0}
       var oc=r.state==='pending'?'<span class="muted">locked, not settled</span>':(r.state==='agree'?'<span class="pos">paid '+money(r.pnl)+'</span>':'<span class="neg">'+esc(r.state)+' '+money(r.pnl)+'</span>');
       return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+fmtTime(r.ts)+'<div class="muted" style="font-size:11px">lasted '+r.lasted_min+' min</div></td><td style="font-size:12.5px">'+esc(splitLabel(r.label)[0])+'<div class="muted" style="font-size:11.5px">'+esc(r.dir)+'</div></td><td class="n">$'+Number(r.unit).toFixed(3)+'</td><td class="n">'+r.pairs.toLocaleString()+'</td><td class="n">'+money(r.depth_usd,false)+'</td><td class="n pos">'+money(r.profit)+'</td><td class="n">'+(r.cash_at_detect==null?'–':money(r.cash_at_detect,false))+'</td><td class="n">'+(r.taken==null?'–':money(r.taken,false))+'</td><td>'+(r.passed_checks?'<span class="pill ok">passed</span>':'<span class="pill warn">'+esc(r.blocked||'blocked')+'</span>')+'</td><td style="font-size:12px">'+oc+'</td></tr>'; }).join('')+'</tbody></table>';
   }
+  function renderBackfill(A){
+    var b=A&&A.audit&&A.audit.shadow_backfill;
+    if(!b||!b.checked){ $('bf-kpis').innerHTML=''; $('bf-daily').innerHTML='<div class="empty">Backfill not available.</div>'; return; }
+    var C=b.checked, U=C.unlimited, B=C.bankroll, O=b.all;
+    var tiles=[['Opportunities (current rules)',String(C.unlimited.n),'of '+b.opportunities+' under round 1 rules · '+b.days+' days'],
+      ['Books could absorb',money(U.capital,false),'current rules, fully filled'],
+      ['Profit ceiling: unlimited',money(U.profit),money(U.mismatch_loss||0)+' lost to mismatches'],
+      ['Profit: $1,800 bankroll',money(B.profit),'≈ '+money(b.per_day_checked)+'/day · peak '+money(B.peak_capital_used,false)+' in use'],
+      ['Round 1 rules, unlimited',money(O.unlimited.profit),money(O.unlimited.mismatch_loss)+' lost to wrong matches']];
+    $('bf-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    var dc=(B.daily||{}), da=(O.bankroll.daily||{}), days=Object.keys(Object.assign({},da,dc)).sort();
+    var tot={o:0,a:0,u:0,b:0,m:0};
+    var rows=days.map(function(d){ var x=dc[d]||{opps:0,absorb:0,profit_unlimited:0,profit_bankroll:0}, y=da[d]||{opps:0,mismatch_loss:0,profit_unlimited:0};
+      tot.o+=x.opps; tot.a+=x.absorb; tot.u+=x.profit_unlimited; tot.b+=x.profit_bankroll; tot.m+=y.mismatch_loss;
+      return '<tr><td class="mono" style="white-space:nowrap">'+new Date(d+'T12:00:00Z').toLocaleDateString([], {weekday:'short',month:'short',day:'numeric'})+'</td><td class="n">'+x.opps+'</td><td class="n">'+money(x.absorb,false)+'</td><td class="n '+cls(x.profit_unlimited)+'">'+money(x.profit_unlimited)+'</td><td class="n '+cls(x.profit_bankroll)+'">'+money(x.profit_bankroll)+'</td><td class="n muted">'+y.opps+'</td><td class="n '+(y.mismatch_loss?'neg':'')+'">'+money(y.mismatch_loss||0)+'</td><td class="n '+cls(y.profit_unlimited)+'">'+money(y.profit_unlimited)+'</td></tr>'; }).join('');
+    $('bf-daily').innerHTML='<table><thead><tr><th>Day (UTC)</th><th class="n">Opps</th><th class="n">Books absorb</th><th class="n">Profit unlimited</th><th class="n">Profit $1,800</th><th class="n">Round 1 opps</th><th class="n">Round 1 mismatch loss</th><th class="n">Round 1 profit</th></tr></thead><tbody>'+rows+
+      '<tr style="font-weight:600"><td>Total</td><td class="n">'+tot.o+'</td><td class="n">'+money(tot.a,false)+'</td><td class="n '+cls(tot.u)+'">'+money(tot.u)+'</td><td class="n '+cls(tot.b)+'">'+money(tot.b)+'</td><td class="n muted">'+b.opportunities+'</td><td class="n neg">'+money(tot.m)+'</td><td class="n '+cls(O.unlimited.profit)+'">'+money(O.unlimited.profit)+'</td></tr></tbody></table>'+
+      '<div class="muted" style="font-size:12px;margin-top:8px">Columns 2–5: current rules. Columns 6–8: round 1 rules with unlimited cash; '+b.pairs_unknown_outcome+' of '+b.pairs_seen+' round-1 pairs have no downloadable settlement and are counted at their locked profit, so round 1 numbers are flattering.</div>';
+  }
   function renderBacktest(A){
     var bt=A&&A.backtest, pr=A&&A.backtest_progress;
     if(!bt){ $('bt-kpis').innerHTML=''; $('bt-table').innerHTML='<div class="empty">Running: '+esc(pr||'starting')+'</div>'; $('bt-upd').textContent=''; return; }
@@ -680,7 +702,7 @@ tr:last-child td{border-bottom:0}
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
     renderHome(A); renderPnl(A); renderRound1(A);
-    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderShadow(A); renderBacktest(A); renderErrors(A); renderGates(A);
+    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderShadow(A); renderBackfill(A); renderBacktest(A); renderErrors(A); renderGates(A);
     renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
