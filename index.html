@@ -152,6 +152,16 @@ tr:last-child td{border-bottom:0}
 .panel.folded .sec-head.fold h2::after{transform:rotate(-90deg)}
 .panel.folded .sec-head{margin-bottom:0}
 .foot{font-size:12px;color:var(--muted);max-width:90ch}
+.tabs{display:flex;gap:4px;flex-wrap:wrap;border-bottom:1px solid var(--line);padding-bottom:0}
+.tabs a{font:600 13.5px var(--sans);color:var(--muted);text-decoration:none;padding:10px 14px;border-radius:10px 10px 0 0;border:1px solid transparent;border-bottom:0;margin-bottom:-1px}
+.tabs a:hover{color:var(--ink)}
+.tabs a[aria-selected="true"]{color:var(--ink);background:var(--surface);border-color:var(--line);box-shadow:0 -2px 0 var(--heat) inset}
+.tabpane{display:grid;gap:16px}
+.tabpane[hidden]{display:none!important}
+.steps{margin:0;padding-left:20px;display:grid;gap:10px;max-width:80ch}
+.steps li{font-size:13.5px;line-height:1.55}
+.note-p{font-size:13.5px;line-height:1.55;margin:0;max-width:70ch}
+.chart .dot-bad{fill:var(--neg)} .chart .dot-ok{fill:var(--pos)}
 .bkpis{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:10px}
 .bk{background:var(--surface2);border:1px solid var(--line);border-radius:10px;padding:10px 12px;min-width:0}
 .bk .l{font-size:11.5px;color:var(--muted)} .bk .v{font:600 18px/1.2 var(--mono);margin-top:4px} .bk .s{font-size:11.5px;color:var(--muted);margin-top:2px}
@@ -167,6 +177,13 @@ tr:last-child td{border-bottom:0}
     <span class="badge">Paper · no real orders</span>
   </header>
 
+  <nav class="tabs" role="tablist" aria-label="Sections">
+    <a href="#home" role="tab" data-tab="home">Home</a>
+    <a href="#paper" role="tab" data-tab="paper">Paper trading</a>
+    <a href="#tests" role="tab" data-tab="tests">Tests &amp; data</a>
+    <a href="#live" role="tab" data-tab="live">Live money</a>
+  </nav>
+
   <section id="status" class="panel hero" aria-live="polite">
     <div>
       <div class="st-line"><span class="dot" aria-hidden="true"></span><div class="st-title" id="st-title">Loading latest data…</div></div>
@@ -179,54 +196,136 @@ tr:last-child td{border-bottom:0}
     </div>
   </section>
 
-  <section class="panel kpis" id="kpis"></section>
+  <!-- ============ TAB 1: HOME ============ -->
+  <div class="tabpane" id="tab-home">
+    <section class="panel">
+      <div class="sec-head"><div><h2>What Smoke does</h2><div class="sub">It looks for the <b>same question priced differently on Kalshi and Polymarket US</b>, then buys <b>both outcomes</b> (YES on one site, NO on the other) for less than $1 in total. Exactly one of the two pays $1, so the profit is fixed the moment both are bought. It does not predict anything.</div></div></div>
+      <div class="bkpis" id="home-kpis"></div>
+    </section>
 
-  <section class="panel" id="split-panel">
-    <div class="sec-head"><div><h2>Real money vs paper only</h2><div class="sub"><b>Eligible</b>: market types we'd trade live because both sites' rules match (game winners, spreads, totals; elections with a cap). <b>Paper only</b>: tennis and UFC, where retirement and draw rules differ. Paper keeps trading both so we learn which types actually break.</div></div></div>
-    <div class="scroll" id="split"></div>
-  </section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>How it works</h2></div></div>
+      <ol class="steps">
+        <li><b>Match.</b> Every 30 minutes it pulls every open market on both sites (~70,000 Polymarket, ~160,000 Kalshi) and pairs only identical questions, using strict rules for each market type: same league (a whitelist per soccer league), same men's/women's competition, same game time, same teams with full names, same line (e.g. over 160.5), full game only. About 5,000 pairs.</li>
+        <li><b>Watch.</b> Kalshi prices stream live for every paired market. Polymarket is re-checked within seconds of any Kalshi move, the 100 pairs closest to a lock every ~20 seconds, and everything else in a rolling sweep.</li>
+        <li><b>Price.</b> Two ways to own both outcomes: Polymarket YES + Kalshi NO, or Kalshi YES + Polymarket NO. Cost = both prices + both fees (Kalshi 0.07·p·(1−p), rounded up to the cent; Polymarket 0.0695·p·(1−p)). Under $0.995 is a lock.</li>
+        <li><b>Check it's really the same event.</b> No trading in a pair's first 30 minutes, none when the two prices usually sit 6¢+ apart, none on a gap that lasts over an hour (real gaps vanish in minutes; a gap that never closes means two different events), none after kickoff, and none on gaps over 15¢.</li>
+        <li><b>Size.</b> Walks both order books, buying pairs while each extra pair still costs ≤ $0.995. Needs ≥ 5¢ total profit and ≥ 25% annualized. Caps: $150 per pair ($400 on deep books), <b>$200 per game across all pairs</b>.</li>
+        <li><b>Settle and verify.</b> When the event ends it reads <b>both</b> sites' results. They must agree, so that exactly one leg paid. Any disagreement is logged as a mismatch and pushes a phone alert.</li>
+      </ol>
+    </section>
 
-  <section class="panel">
-    <div class="sec-head"><div><h2>Closest to a lock</h2><div class="sub">Cheapest way to own both outcomes of the same question across the two sites, fees included, from the last scan. Under $1.00 means a guaranteed profit if both orders fill.</div></div>
-      <span class="eyebrow" id="board-n"></span></div>
-    <div class="board" id="board"></div>
-    <div class="legend"><span><i style="background:var(--pos)"></i>Under $0.995 with at least 1 pair on both books: bought</span><span><i style="background:color-mix(in srgb,var(--warn) 70%,var(--surface2))"></i>Within 2¢ of $1, or under $1 but too thin to fill</span><span><i style="background:color-mix(in srgb,var(--muted) 45%,var(--surface2))"></i>Over $1: no lock</span><span>Depth = matched pairs available at the top price on both books</span></div>
-  </section>
+    <section class="grid2">
+      <div class="panel"><div class="sec-head"><div><h2>Example lock</h2><div class="sub">Middle Tennessee vs Kansas, Nov 2</div></div></div>
+        <div class="scroll"><table><thead><tr><th></th><th>Kalshi</th><th>Polymarket US</th></tr></thead><tbody>
+          <tr><td>Bought</td><td>125 × Middle Tennessee <b>YES</b> @ 2¢</td><td>125 × Middle Tennessee <b>NO</b> @ 97¢</td></tr>
+          <tr><td>If Middle Tennessee wins</td><td class="pos">pays $125</td><td>pays $0</td></tr>
+          <tr><td>If Kansas wins</td><td>pays $0</td><td class="pos">pays $125</td></tr>
+          <tr><td colspan="3">Cost $124.18 with fees, pays $125 either way, so <b class="pos">+$0.82 locked</b>.</td></tr>
+        </tbody></table></div></div>
+      <div class="panel"><div class="sec-head"><div><h2>The one real risk</h2></div></div>
+        <p class="note-p">The trade only works if both markets are <b>the same event</b>. If the matcher pairs two different events, both legs can lose. On Nov 8, men's Man Utd vs Aston Villa (Polymarket) was paired with the women's game between the same clubs (Kalshi): <b class="neg">−$476</b>. One error costs 100–500 good locks. That's why matching is triple-checked and audited on every settled pair, traded or not (see Tests &amp; data).</p></div>
+    </section>
 
-  <section class="panel">
-    <div class="sec-head"><div><h2>Open locks</h2><div class="sub">Paper positions: one leg on each site. Exactly one leg pays $1 per pair, so the profit is fixed at entry.</div></div><span class="eyebrow" id="locks-n"></span></div>
-    <div class="locks" id="locks"></div>
-  </section>
+    <p class="foot">Paper trading uses real prices from both sites' public data and simulates fills: the two books are read a fraction of a second apart, and nobody else is assumed to take the price first. Real orders would capture less. The laptop publishes a fresh snapshot about once a minute; this page re-reads it every 90 seconds.</p>
+  </div>
 
-  <section class="panel" id="mm-panel">
-    <div class="sec-head"><div><h2>Market making</h2><div class="sub">Separate $500 paper bankroll. Rests bids on Polymarket US (earning the maker rebate) priced so bid + Kalshi hedge + fees stays under $0.995, then hedges on Kalshi when filled. A fill counts only when volume trades at or through our price after everyone ahead of us in line. The least certain of the three tests: real queues and reactions can't be fully simulated.</div></div><span class="eyebrow" id="mm-upd"></span></div>
-    <div class="bkpis" id="mm-kpis"></div>
-    <div class="scroll" id="mm-quotes" style="margin-top:12px"></div>
-    <div class="locks" id="mm-fills" style="margin-top:12px"></div>
-  </section>
+  <!-- ============ TAB 2: PAPER TRADING ============ -->
+  <div class="tabpane" id="tab-paper">
+    <section class="panel kpis" id="kpis"></section>
 
-  <section class="panel" id="bundles-panel">
-    <div class="sec-head"><div><h2>One-site bundles</h2><div class="sub">Kalshi only, separate $500 paper bankroll. <b>Partition</b>: buy every bracket of one number (exactly one must win) for under the payout. <b>Ladder</b>: "above 3.0%" priced below "above 3.1%" can't be right; YES on the easier bar + NO on the harder one pays at least $1.</div></div><span class="eyebrow" id="bundle-upd"></span></div>
-    <div class="bkpis" id="bundle-kpis"></div>
-    <div class="board" id="bundle-board" style="margin-top:12px"></div>
-    <div class="locks" id="bundle-locks" style="margin-top:12px"></div>
-  </section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>Realized profit over time</h2><div class="sub">Cumulative paper P&amp;L at each settlement. Red dots are mismatches (two different events paired).</div></div><span class="eyebrow" id="pnl-n"></span></div>
+      <div id="pnlchart"></div>
+    </section>
 
-  <section class="grid2">
-    <div class="panel"><div class="sec-head"><div><h2>Gaps found per hour</h2><div class="sub">Pairs priced under $1 incl. fees, UTC hours, last 48</div></div></div><div id="hours"></div></div>
-    <div class="panel"><div class="sec-head"><div><h2>What we watch</h2><div class="sub">Matched pairs by market family</div></div></div><div class="fams" id="fams"></div></div>
-  </section>
+    <section class="panel" id="split-panel">
+      <div class="sec-head"><div><h2>Real money vs paper only</h2><div class="sub"><b>Eligible</b>: market types we'd trade live because both sites' rules match (game winners, spreads, totals; elections with a cap). <b>Paper only</b>: tennis and UFC, where retirement and draw rules differ. Paper keeps trading both so we learn which types actually break.</div></div></div>
+      <div class="scroll" id="split"></div>
+    </section>
 
-  <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Gap log</h2><span class="eyebrow">Latest 40 sightings</span></div><div class="scroll" id="gaplog"></div></section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>Closest to a lock</h2><div class="sub">Cheapest way to own both outcomes of the same question across the two sites, fees included, from the last scan. Under $1.00 means a guaranteed profit if both orders fill.</div></div>
+        <span class="eyebrow" id="board-n"></span></div>
+      <div class="board" id="board"></div>
+      <div class="legend"><span><i style="background:var(--pos)"></i>Under $0.995 with at least 1 pair on both books: bought</span><span><i style="background:color-mix(in srgb,var(--warn) 70%,var(--surface2))"></i>Within 2¢ of $1, or under $1 but too thin to fill</span><span><i style="background:color-mix(in srgb,var(--muted) 45%,var(--surface2))"></i>Over $1: no lock</span></div>
+    </section>
 
-  <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Settled &amp; voided</h2><span class="eyebrow">Newest first</span></div><div id="closed"></div></section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>Open locks</h2><div class="sub">One leg on each site. Exactly one leg pays $1 per pair, so the profit is fixed at entry.</div></div><span class="eyebrow" id="locks-n"></span></div>
+      <div class="locks" id="locks"></div>
+    </section>
 
-  <section class="grid2">
-    <div class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Health</h2><span class="eyebrow">Problems first</span></div><div class="checks" id="checks"></div></div>
-    <div class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Weather bot</h2><span class="eyebrow">Paused</span></div><div id="weather"></div></div>
-  </section>
+    <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Settled &amp; voided</h2><span class="eyebrow">Newest first</span></div><div id="closed"></div></section>
 
-  <p class="foot">How the paper fills work: the scanner reads both order books for every matched pair, then walks the price levels until the next pair would cost more than $0.995 incl. both sites' fees (Kalshi 0.07·p·(1−p), Polymarket US 0.0695·p·(1−p)), capped at $150 per pair and each site's $900 paper cash. Limits: the two books are read a fraction of a second apart, nobody else is assumed to take the price first, and in-game markets are skipped. A gap over 15¢ is treated as a wrong match and ignored. The laptop publishes a fresh snapshot about once a minute; this page re-reads it every 90 seconds.</p>
+    <section class="grid2">
+      <div class="panel"><div class="sec-head"><div><h2>Gaps found per hour</h2><div class="sub">Pairs priced under $1 incl. fees, UTC hours, last 48</div></div></div><div id="hours"></div></div>
+      <div class="panel"><div class="sec-head"><div><h2>What we watch</h2><div class="sub">Matched pairs by market family</div></div></div><div class="fams" id="fams"></div></div>
+    </section>
+
+    <section class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Gap log</h2><span class="eyebrow">Latest 40 sightings</span></div><div class="scroll" id="gaplog"></div></section>
+  </div>
+
+  <!-- ============ TAB 3: TESTS & DATA ============ -->
+  <div class="tabpane" id="tab-tests">
+    <section class="panel">
+      <div class="sec-head"><div><h2>Matching audit (live)</h2><div class="sub">Every matched pair, traded or not, is checked after its event ends: both sites must have settled the same way. Measures how often the matcher pairs two different events, the risk that cost $476 on Nov 8, on thousands of pairs a week with no money at risk. The break-even is fewer than about 1 bad match per 230.</div></div><span class="eyebrow" id="audit-upd"></span></div>
+      <div class="bkpis" id="audit-kpis"></div>
+      <div class="scroll" id="audit-table" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel">
+      <div class="sec-head"><div><h2>Matching backtest (since Polymarket US launched, Nov 2025)</h2><div class="sub">The same matcher code run over every settled market on both sites, checking each pair's two results agree. Polymarket US publishes no price or order-book history, so a profit backtest isn't possible; this measures matching accuracy, the thing that decides whether the strategy is safe.</div></div><span class="eyebrow" id="bt-upd"></span></div>
+      <div class="bkpis" id="bt-kpis"></div>
+      <div class="scroll" id="bt-table" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel">
+      <div class="sec-head"><div><h2>Error log</h2><div class="sub">Paper trades that settled inconsistently, plus warnings and errors from the bot in the last 24 hours.</div></div></div>
+      <div class="scroll" id="errlog"></div>
+    </section>
+
+    <section class="panel" id="mm-panel">
+      <div class="sec-head"><div><h2>Market making</h2><div class="sub">Separate $500 paper bankroll. Rests bids on Polymarket US (earning the maker rebate) priced so bid + Kalshi hedge + fees stays under $0.995, then hedges on Kalshi when filled. The least certain of the tests: real queues and reactions can't be fully simulated.</div></div><span class="eyebrow" id="mm-upd"></span></div>
+      <div class="bkpis" id="mm-kpis"></div>
+      <div class="scroll" id="mm-quotes" style="margin-top:12px"></div>
+      <div class="locks" id="mm-fills" style="margin-top:12px"></div>
+    </section>
+
+    <section class="panel" id="bundles-panel">
+      <div class="sec-head"><div><h2>One-site bundles</h2><div class="sub">Kalshi only, separate $500 paper bankroll. <b>Partition</b>: buy every bracket of one number for under the payout. <b>Ladder</b>: YES on the easier bar + NO on the harder one when they're priced out of order.</div></div><span class="eyebrow" id="bundle-upd"></span></div>
+      <div class="bkpis" id="bundle-kpis"></div>
+      <div class="board" id="bundle-board" style="margin-top:12px"></div>
+      <div class="locks" id="bundle-locks" style="margin-top:12px"></div>
+    </section>
+
+    <section class="grid2">
+      <div class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Health</h2><span class="eyebrow">Problems first</span></div><div class="checks" id="checks"></div></div>
+      <div class="panel"><div class="sec-head fold" tabindex="0" role="button"><h2>Weather bot</h2><span class="eyebrow">Paused</span></div><div id="weather"></div></div>
+    </section>
+  </div>
+
+  <!-- ============ TAB 4: LIVE MONEY ============ -->
+  <div class="tabpane" id="tab-live">
+    <section class="panel">
+      <div class="sec-head"><div><h2>Live money</h2><div class="sub">No real orders have been placed. Live trading starts only when every gate below is met.</div></div><span class="pill warn">Not live</span></div>
+      <div class="checks" id="gates"></div>
+    </section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>Planned pilot</h2></div></div>
+      <div class="scroll"><table><tbody>
+        <tr><td>Capital</td><td>$500 real (about $350 Polymarket US / $150 Kalshi)</td></tr>
+        <tr><td>Market types</td><td>Game winners, spreads, totals; elections with a cap. Not tennis or UFC</td></tr>
+        <tr><td>Per-trade and per-game caps</td><td>$50 per trade, $100 per game to start; raised as clean settlements build</td></tr>
+        <tr><td>Order handling</td><td>Thinner leg first, fill-or-cancel limit orders, automatic unwind if the second leg misses; kill switch</td></tr>
+        <tr><td>Success measure</td><td>Real profit captured vs paper on the same gaps; zero mismatches</td></tr>
+      </tbody></table></div>
+    </section>
+    <section class="panel">
+      <div class="sec-head"><div><h2>Live trades</h2></div></div>
+      <div class="empty">Live trades will appear here once the pilot starts.</div>
+    </section>
+  </div>
 </div>
 
 <script>
@@ -399,6 +498,89 @@ tr:last-child td{border-bottom:0}
     $('split').innerHTML='<table><thead><tr><th>Group</th><th class="n">Settled</th><th class="n">Won</th><th class="n">Realized</th><th class="n">Mismatches</th><th class="n">Open</th><th class="n">Locked</th></tr></thead><tbody>'+
       row('Real-money eligible',S.eligible,true)+row('Paper only',S.excluded,true)+fr+'</tbody></table>';
   }
+  // ---------- tabs ----------
+  var TABS=['home','paper','tests','live'];
+  function showTab(){
+    var t=(location.hash||'').replace('#',''); if(TABS.indexOf(t)<0) t='home';
+    TABS.forEach(function(x){ var el=$('tab-'+x); if(el) el.hidden=(x!==t); });
+    document.querySelectorAll('.tabs a').forEach(function(a){ a.setAttribute('aria-selected', String(a.dataset.tab===t)); });
+  }
+  window.addEventListener('hashchange', showTab); showTab();
+
+  function renderHome(A){
+    var S=(A&&A.split)||{}, E=S.eligible||{}, au=(A&&A.audit)||{}, st=au.states||{};
+    var agree=st.agree||0, mism=st.mismatch||0;
+    var tiles=[['Pairs watched',A?(A.pairs||0).toLocaleString():'–','same question on both sites'],
+      ['Clean locks paid as promised',(function(){ var c=0,n=0; ((A&&A.pnl_series)||[]).forEach(function(r){ if(!r[4]){ n++; if(r[2]>=0) c++; } }); return n? c+' of '+n : '–'; })(),'every correctly matched lock'],
+      ['Realized (paper)',A?money(A.realized):'–','including the two mismatches'],
+      ['Matching audit',(agree+mism)?(mism+' bad of '+(agree+mism).toLocaleString()):'collecting','pairs checked after settlement'],
+      ['Real money','$0','not live yet']];
+    $('home-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+  }
+  function renderPnl(A){
+    var pts=(A&&A.pnl_series)||[], box=$('pnlchart');
+    $('pnl-n').textContent=pts.length? pts.length+' settlements' : '';
+    if(!pts.length){ box.innerHTML='<div class="empty">The chart starts with the first settlement.</div>'; return; }
+    var W=720,H=260,L=64,R=18,T=16,B=30, ys=[0].concat(pts.map(function(p){return p[1]}));
+    var lo=Math.min.apply(null,ys), hi=Math.max.apply(null,ys); if(hi-lo<10){hi+=5;lo-=5}
+    var pad=(hi-lo)*0.08; lo-=pad; hi+=pad;
+    var t0=new Date(pts[0][0]).getTime(), t1=new Date(pts[pts.length-1][0]).getTime(); if(t1<=t0) t1=t0+3600e3;
+    var X=function(t){return L+(t-t0)/(t1-t0)*(W-L-R)}, Y=function(v){return T+(hi-v)*(H-T-B)/(hi-lo)};
+    var path='M'+X(t0).toFixed(1)+','+Y(0).toFixed(1)+pts.map(function(p){ return ' L'+X(new Date(p[0]).getTime()).toFixed(1)+','+Y(p[1]).toFixed(1); }).join('');
+    var last=pts[pts.length-1][1], col=last>=0?'var(--pos)':'var(--neg)';
+    var ticks=[hi,(hi+lo)/2,lo,0].map(function(v){return '<line class="gridl" x1="'+L+'" x2="'+(W-R)+'" y1="'+Y(v).toFixed(1)+'" y2="'+Y(v).toFixed(1)+'"'+(v===0?' stroke-dasharray="3 4"':'')+'/><text class="ax" x="'+(L-8)+'" y="'+(Y(v)+4).toFixed(1)+'" text-anchor="end">'+money(v)+'</text>'}).join('');
+    var days=[]; for(var d=new Date(t0); d.getTime()<=t1; d=new Date(d.getTime()+86400e3)) days.push(d);
+    var step=Math.max(1,Math.ceil(days.length/7));
+    var xl=days.filter(function(_,i){return i%step===0}).map(function(d){ return '<text class="ax" x="'+X(d.getTime()).toFixed(1)+'" y="'+(H-8)+'" text-anchor="middle">'+d.toLocaleDateString([], {month:'short',day:'numeric'})+'</text>'; }).join('');
+    var dots=pts.filter(function(p){return p[4]}).map(function(p){ return '<circle class="dot-bad" cx="'+X(new Date(p[0]).getTime()).toFixed(1)+'" cy="'+Y(p[1]).toFixed(1)+'" r="3.5"><title>Mismatch '+money(p[2])+'</title></circle>'; }).join('');
+    box.innerHTML='<svg class="chart" viewBox="0 0 '+W+' '+H+'" role="img" aria-label="Cumulative realized paper profit">'+ticks+xl+
+      '<path d="'+path+'" fill="none" stroke="'+col+'" stroke-width="2.4" stroke-linejoin="round"/>'+dots+
+      '<circle cx="'+X(t1).toFixed(1)+'" cy="'+Y(last).toFixed(1)+'" r="5" fill="'+col+'" stroke="var(--surface)" stroke-width="2"/>'+
+      '<text class="ax" x="'+(X(t1)-8).toFixed(1)+'" y="'+(Y(last)-10).toFixed(1)+'" text-anchor="end" style="fill:'+col+';font-weight:700">'+money(last)+'</text></svg>';
+  }
+  function famRows(by){ return Object.keys(by||{}).sort(function(a,b){ var A=by[a],B=by[b]; return ((B.agree||0)+(B.mismatch||0))-((A.agree||0)+(A.mismatch||0)); }).map(function(f){ var r=by[f], chk=(r.agree||0)+(r.mismatch||0)+(r.both_fair||0);
+      return '<tr><td>'+esc(famName(f))+'</td><td class="n">'+chk.toLocaleString()+'</td><td class="n pos">'+(r.agree||0).toLocaleString()+'</td><td class="n '+((r.mismatch||0)?'neg':'')+'">'+(r.mismatch||0)+'</td><td class="n">'+(r.both_fair||0)+'</td><td class="n muted">'+((r.pending||0)+(r.unresolved||0)).toLocaleString()+'</td></tr>'; }).join(''); }
+  function renderAudit(A){
+    var au=A&&A.audit; if(!au){ $('audit-kpis').innerHTML=''; $('audit-table').innerHTML='<div class="empty">The audit starts checking pairs about 3 hours after their games end.</div>'; return; }
+    var st=au.states||{}, chk=(st.agree||0)+(st.mismatch||0)+(st.both_fair||0);
+    $('audit-upd').textContent='Updated '+ago(Date.now()/1000-(au.updated_epoch||0));
+    var tiles=[['Pairs registered',(au.pairs||0).toLocaleString(),'every pair the matcher made'],['Checked at settlement',chk.toLocaleString(),'both sites settled'],
+      ['Agreed',(st.agree||0).toLocaleString(),chk?((100*(st.agree||0)/chk).toFixed(2)+'%'):'–'],['Mismatches',String(st.mismatch||0),'two different events paired'],['Waiting',((st.pending||0)).toLocaleString(),'event not over yet']];
+    $('audit-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    var mm=(au.mismatches||[]).slice(-10).reverse();
+    $('audit-table').innerHTML='<table><thead><tr><th>Market type</th><th class="n">Checked</th><th class="n">Agreed</th><th class="n">Mismatch</th><th class="n">Both fair-priced</th><th class="n">Waiting</th></tr></thead><tbody>'+famRows(au.by_family)+'</tbody></table>'+
+      (mm.length? '<h3 style="margin:14px 0 6px;font-size:15px">Mismatches</h3><table><tbody>'+mm.map(function(r){ return '<tr><td style="font-size:12.5px">'+esc(r.label)+'</td><td class="n">PM '+r.pm_yes+' / K '+r.k_yes+'</td></tr>'; }).join('')+'</tbody></table>' : '');
+  }
+  function renderBacktest(A){
+    var bt=A&&A.backtest, pr=A&&A.backtest_progress;
+    if(!bt){ $('bt-kpis').innerHTML=''; $('bt-table').innerHTML='<div class="empty">Running: '+esc(pr||'starting')+'</div>'; $('bt-upd').textContent=''; return; }
+    var t=bt.totals||{}, chk=(t.agree||0)+(t.mismatch||0)+(t.both_fair||0);
+    $('bt-upd').textContent='Finished '+fmtTime(bt.finished)+(pr&&pr.indexOf('done')<0?' · re-running: '+pr:'');
+    var tiles=[['Settled markets scanned',((bt.pm_markets||0)+(bt.kalshi_markets||0)).toLocaleString(),(bt.pm_markets||0).toLocaleString()+' Polymarket · '+(bt.kalshi_markets||0).toLocaleString()+' Kalshi'],
+      ['Pairs matched',(bt.pairs||0).toLocaleString(),(bt.range&&bt.range[0]?String(bt.range[0]).slice(0,10)+' → '+String(bt.range[1]).slice(0,10):'')],
+      ['Agreed',(t.agree||0).toLocaleString(),chk?((100*(t.agree||0)/chk).toFixed(2)+'%'):'–'],['Mismatches',String(t.mismatch||0),chk?('1 in '+(t.mismatch?Math.round(chk/t.mismatch).toLocaleString():'∞')):''],['Both fair-priced',String(t.both_fair||0),'postponed / cancelled']];
+    $('bt-kpis').innerHTML=tiles.map(function(x){return '<div class="bk"><div class="l">'+x[0]+'</div><div class="v">'+esc(x[1])+'</div><div class="s">'+esc(x[2])+'</div></div>';}).join('');
+    var mm=(bt.mismatches||[]).slice(0,15);
+    $('bt-table').innerHTML='<table><thead><tr><th>Market type</th><th class="n">Checked</th><th class="n">Agreed</th><th class="n">Mismatch</th><th class="n">Both fair-priced</th><th class="n">Unresolved</th></tr></thead><tbody>'+famRows(bt.by_family)+'</tbody></table>'+
+      (mm.length? '<h3 style="margin:14px 0 6px;font-size:15px">Mismatches found</h3><table><tbody>'+mm.map(function(r){ return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+esc(String(r.start||'').slice(0,10))+'</td><td style="font-size:12.5px">'+esc(r.label)+'</td><td class="n">PM '+r.pm_yes+' / K '+r.k_yes+'</td></tr>'; }).join('')+'</tbody></table>' : '');
+  }
+  function renderErrors(A){
+    var ml=((A&&A.mismatch_log)||[]).slice().reverse(), is=snap.issues||[], cr=snap.crashes||[];
+    var h='';
+    h+= ml.length? '<table><thead><tr><th>Settled</th><th>Mismatched paper trade</th><th class="n">P&amp;L</th><th>Why</th></tr></thead><tbody>'+ml.slice(0,20).map(function(t){ return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+fmtTime(t.closed)+'</td><td style="font-size:12.5px">'+esc(splitLabel(t.label)[0])+'<div class="muted" style="font-size:11.5px">Kalshi: '+esc(splitLabel(t.label)[1])+'</div></td><td class="n neg">'+money(t.pnl)+'</td><td style="font-size:12px" class="muted">'+esc(t.mismatch_note||'')+'</td></tr>'; }).join('')+'</tbody></table>' : '<div class="empty">No mismatched trades.</div>';
+    h+= '<h3 style="margin:16px 0 6px;font-size:15px">Bot warnings and errors (24h)</h3>'+(is.length? '<table><tbody>'+is.slice(0,15).map(function(i){ return '<tr><td><span class="pill '+((i.level==='ERROR'||i.level==='CRITICAL')?'bad':'warn')+'">'+esc(i.level)+'</span></td><td class="n">'+i.count+'×</td><td class="mono" style="font-size:12px">'+esc(i.source)+': '+esc(i.msg)+'</td></tr>'; }).join('')+'</tbody></table>' : '<div class="empty">None in the last 24 hours.</div>');
+    h+= cr.length? '<h3 style="margin:16px 0 6px;font-size:15px">Crashes (24h)</h3><table><tbody>'+cr.map(function(c){ return '<tr><td class="mono" style="font-size:12px">'+fmtTime(c.ts)+'</td><td class="mono neg" style="font-size:12px">'+esc(c.error||c.msg)+'</td></tr>'; }).join('')+'</tbody></table>' : '';
+    $('errlog').innerHTML=h;
+  }
+  function renderGates(A){
+    var au=(A&&A.audit)||{}, st=au.states||{}, chk=(st.agree||0)+(st.mismatch||0), bt=(A&&A.backtest)||{}, bt_m=(bt.totals||{}).mismatch;
+    var gates=[[false,'Polymarket US account approved, API key saved','Your signup; needed to place the Polymarket leg'],
+      [chk>=700 && !(st.mismatch), 'Matching audit: 700+ settled pairs, 0 mismatches', chk.toLocaleString()+' checked so far, '+(st.mismatch||0)+' mismatches'],
+      [bt.totals!=null && !bt_m, 'Matching backtest clean (no mismatches with current rules)', bt.totals? ((bt_m||0)+' mismatches across '+(bt.pairs||0).toLocaleString()+' historical pairs') : 'running'],
+      [false,'Live order placement + leg-risk handling built and tested','Built only after the gates above pass'],
+      [false,'Your go-ahead','Nothing trades for real without it']];
+    $('gates').innerHTML=gates.map(function(g){ return '<div class="check '+(g[0]?'ok':'warn')+'"><span class="cd"></span><div><div class="nm">'+(g[0]?'✓ ':'')+esc(g[1])+'</div><div class="dt">'+esc(g[2])+'</div></div></div>'; }).join('');
+  }
   function render(){
     if(!snap) return;
     var A=snap.arb||null, cash=(A&&A.cash)||{}, bank=(A&&A.bank_per_venue)||900;
@@ -413,6 +595,7 @@ tr:last-child td{border-bottom:0}
       ['Paper cash', A? money((cash.k||0)+(cash.pm||0),false) : '–', '', 'Kalshi '+money(cash.k,false)+' · Poly '+money(cash.pm,false)+' of '+money(bank*2,false)]
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
+    renderHome(A); renderPnl(A); renderAudit(A); renderBacktest(A); renderErrors(A); renderGates(A);
     renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
