@@ -429,8 +429,8 @@ tr:last-child td{border-bottom:0}
       </tbody></table></div>
     </section>
     <section class="panel">
-      <div class="sec-head"><div><h2>Live trades</h2></div></div>
-      <div class="empty">Live trades will appear here once the pilot starts.</div>
+      <div class="sec-head"><div><h2>Order log</h2><div class="sub">Every real-money-eligible lock the paper trader opens is also sent to the live order code. In <b>dry run</b> it records the exact two orders it would place (Polymarket prices shown as the YES-side price, as their API requires) and sends nothing. Limits once live: $50 per trade, $100 per game, stop for the day after $25 of unwind losses or 40 trades.</div></div><span class="eyebrow" id="livelog-mode"></span></div>
+      <div class="scroll" id="livelog"></div>
     </section>
   </div>
 </div>
@@ -723,15 +723,26 @@ tr:last-child td{border-bottom:0}
   }
   function renderGates(A){
     var au=(A&&A.audit)||{}, st=au.states||{}, chk=(st.agree||0)+(st.mismatch||0), bt=(A&&A.backtest)||{}, bt_m=(bt.totals||{}).mismatch;
-    var gates=[[false,'Polymarket US account approved, API key saved','Your signup; needed to place the Polymarket leg'],
+    var L=(A&&A.audit&&A.audit.live)||{}, ps=L.pm_stream||{};
+    var gates=[[true,'Polymarket US account approved, API key saved','Verified Nov 14 with a signed read-only balance check'],
+      [!!ps.connected,'Live Polymarket prices streaming',ps.connected?((ps.subscribed||0).toLocaleString()+' markets live (soonest games first); the rest checked every ~2 min'):'Not connected: '+(ps.error||'starting')],
       [chk>=700 && !(st.mismatch), 'Matching audit: 700+ settled pairs, 0 mismatches', chk.toLocaleString()+' checked so far, '+(st.mismatch||0)+' mismatches'],
       [bt.totals!=null && !bt_m, 'Matching backtest clean (no mismatches with current rules)', bt.totals? ((bt_m||0)+' mismatches across '+(bt.pairs||0).toLocaleString()+' historical pairs') : 'running'],
-      [false,'Live order placement + leg-risk handling built and tested','Built only after the gates above pass'],
-      [false,'Your go-ahead','Nothing trades for real without it']];
+      [true,'Live order code built (thinner leg first, fill-or-kill, auto-unwind, kill switch)','Running as a dry run: builds the exact orders for every eligible lock and logs them, sends nothing'],
+      [false,'Accounts funded (~$350 Polymarket US, ~$150 Kalshi)','Planned after this weekend'],
+      [false,'Your go-ahead','Two switches on the laptop: ARB_LIVE=1 in .env and the file state/ARB_LIVE_ON. Delete either, or create state/KILL_ARB, to stop instantly']];
     var passed=gates.filter(function(g){return g[0]}).length, next=gates.filter(function(g){return !g[0]})[0];
     $('live-title').textContent='Not live · '+passed+' of '+gates.length+' gates passed';
     $('live-sub').textContent='No real orders have been placed. '+(next?('Next gate: '+next[1]+'.'):'All gates passed; waiting for your go-ahead.');
     $('gates').innerHTML=gates.map(function(g){ return '<div class="check '+(g[0]?'ok':'warn')+'"><span class="cd"></span><div><div class="nm">'+(g[0]?'✓ ':'')+esc(g[1])+'</div><div class="dt">'+esc(g[2])+'</div></div></div>'; }).join('');
+  }
+  function renderLiveLog(A){
+    var L=(A&&A.audit&&A.audit.live)||{}, rc=(L.recent||[]).slice().reverse();
+    $('livelog-mode').textContent=(L.mode_now||'dry-run').toUpperCase()+(L.plans!=null?' · '+L.plans+' dry-run plans':'');
+    $('livelog').innerHTML= rc.length? '<table><thead><tr><th>When</th><th>Lock</th><th class="n">Pairs</th><th class="n">Cost/pair</th><th>First leg</th><th>Polymarket order</th><th>Kalshi order</th><th>Result</th></tr></thead><tbody>'+rc.map(function(r){
+      return '<tr><td class="mono" style="font-size:12px;white-space:nowrap">'+fmtTime(r.ts)+'</td><td style="font-size:12.5px">'+esc(splitLabel(r.label)[0])+(r.eligible?'':' <span class="chip">paper only</span>')+'</td><td class="n">'+r.qty+'</td><td class="n">$'+Number(r.unit_cost).toFixed(3)+'</td><td>'+(r.first_leg==='pm'?'Polymarket':'Kalshi')+'</td><td class="mono" style="font-size:11.5px">'+esc(String(r.pm_intent||'').replace('ORDER_INTENT_','').replace('_',' '))+' @ '+esc(r.pm_price)+'</td><td class="mono" style="font-size:11.5px">BUY '+esc(String(r.k_side).toUpperCase())+' @ '+r.k_cents+'¢</td><td style="font-size:12px">'+esc(r.result)+'</td></tr>'; }).join('')+'</tbody></table>'
+      : '<div class="empty">No eligible locks since the order code went in. The first one shows here with the exact orders it would send.</div>';
+    var lp=$('live-pnl'); if(lp) lp.textContent='$0.00';
   }
   function renderRound1(A){
     var R1=A&&A.round1; if(!R1){ $('r1-kpis').innerHTML='<div class="empty">Archive not available.</div>'; return; }
@@ -762,7 +773,7 @@ tr:last-child td{border-bottom:0}
     ];
     $('kpis').innerHTML=tiles.map(function(x){return '<div class="kpi"><div class="l">'+x[0]+'</div><div class="v '+x[2]+'">'+esc(x[1])+'</div><div class="s">'+esc(x[3])+'</div></div>'}).join('');
     renderHome(A); renderPnl(A); renderRound1(A);
-    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderShadow(A); renderBackfill(A); renderBacktest(A); renderErrors(A); renderGates(A);
+    if(A&&A.round_started) $('r2-since').textContent='since '+fmtTime(A.round_started); renderAudit(A); renderShadow(A); renderBackfill(A); renderBacktest(A); renderErrors(A); renderGates(A); renderLiveLog(A);
     renderBoard(A); renderSplit(A); renderLocks(A); renderBundles(A&&A.bundle); renderMM(A&&A.mm); renderHours(A); renderFams(A); renderGapLog(A); renderClosed(A); renderWeather();
     var rank={bad:0,warn:1,ok:2}; var ch=(snap.checks||[]).slice().sort(function(a,b){return (rank[a.status]??3)-(rank[b.status]??3)});
     $('checks').innerHTML=ch.map(function(x){ var p=x.status==='ok'?'ok':x.status==='warn'?'warn':'bad';
