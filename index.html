@@ -601,9 +601,10 @@ tr:last-child td{border-bottom:0}
   function renderSplit(A){
     var S=A&&A.split; if(!S){ $('split').innerHTML='<div class="empty">Appears with the next snapshot.</div>'; return; }
     function row(name,g,strong){ return '<tr'+(strong?' style="font-weight:600"':'')+'><td>'+name+'</td><td class="n">'+g.settled+'</td><td class="n">'+(g.settled?Math.round(100*g.wins/g.settled)+'%':'–')+'</td><td class="n '+cls(g.realized)+'">'+money(g.realized)+'</td><td class="n '+(g.mismatches?'neg':'')+'">'+g.mismatches+'</td>'+(g.open!=null?'<td class="n">'+g.open+'</td><td class="n '+cls(g.locked)+'">'+money(g.locked)+'</td>':'<td></td><td></td>')+'</tr>'; }
-    var fam=S.by_family||{}, fr=Object.keys(fam).map(function(f){ return row('<span style="padding-left:14px" class="muted">'+esc(famName(f))+'</span>',fam[f],false); }).join('');
+    function isElig(f){ if(f==='game-mlb'||/-cfb$/.test(f)) return false; return /^(game|spread|total)-/.test(f)||['election','tennis','ufc'].indexOf(f)>=0; }
+    var fam=S.by_family||{}, sub=function(ok){ return Object.keys(fam).filter(function(f){return isElig(f)===ok}).sort(function(a,b){return fam[b].settled-fam[a].settled}).map(function(f){ return row('<span style="padding-left:14px" class="muted">'+esc(famName(f))+'</span>',fam[f],false); }).join(''); };
     $('split').innerHTML='<table><thead><tr><th>Group</th><th class="n">Settled</th><th class="n">Won</th><th class="n">Realized</th><th class="n">Mismatches</th><th class="n">Open</th><th class="n">Locked</th></tr></thead><tbody>'+
-      row('Real-money eligible',S.eligible,true)+row('Paper only',S.excluded,true)+fr+'</tbody></table>';
+      row('Real-money eligible',S.eligible,true)+sub(true)+row('Paper only',S.excluded,true)+sub(false)+'</tbody></table>';
   }
   // ---------- tabs ----------
   var TABS=['home','paper','tests','live'];
